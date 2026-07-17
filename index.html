@@ -7,22 +7,52 @@
 <meta name="description" content="Portfolio of Asil Jamesha T — AI & Data Science student, Full-Stack Developer building intelligent, real-world software.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicon/2.16.0/devicon.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#2b0d13;
-    --ink-2:#33111a;
-    --ink-3:#3c1720;
-    --paper:#f3e8d2;
-    --paper-dim:#d3bf9c;
-    --gold:#d8b877;
-    --gold-soft:#ecdcb2;
-    --teal:#c17b8f;
-    --muted:#a98a72;
-    --line: rgba(243,232,210,0.12);
-    --line-strong: rgba(243,232,210,0.22);
+    /* Midnight Crimson palette */
+    --bg:#0D1117;
+    --bg-rgb:13,17,23;
+    --primary:#00E676;
+    --secondary:#8B5CF6;
+    --accent:#22D3EE;
+    --text:#F3F4F6;
+    --on-accent:#0D1117;
+
+    /* Existing variable names, remapped onto the palette above */
+    --ink: var(--bg);
+    --ink-2:#161b22;
+    --ink-3:#1e2530;
+    --paper: var(--text);
+    --paper-dim: rgba(243,244,246,0.75);
+    --gold: var(--primary);
+    --gold-soft:#5cffa8;
+    --teal: var(--secondary);
+    --muted: rgba(243,244,246,0.56);
+    --line: rgba(243,244,246,0.12);
+    --line-strong: rgba(243,244,246,0.24);
     --max: 1120px;
+  }
+
+  html[data-theme="light"]{
+    --bg:#FFFFFF;
+    --bg-rgb:255,255,255;
+    --text:#0D1117;
+    --on-accent:#0D1117;
+
+    --ink-2:#F3F4F6;
+    --ink-3:#E9ECEF;
+    --paper-dim: rgba(13,17,23,0.72);
+    --gold-soft:#00ffa3;
+    --muted: rgba(13,17,23,0.58);
+    --line: rgba(13,17,23,0.12);
+    --line-strong: rgba(13,17,23,0.22);
+  }
+
+  body, nav, .hero-grid-overlay, .hero-photo-tag,
+  #certs .cert-row, .skill-cat, .project-card,
+  .btn-solid, .btn-outline, .nav-cta{
+    transition: background-color .35s ease, border-color .35s ease, color .35s ease;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -34,7 +64,7 @@
     -webkit-font-smoothing:antialiased;
     line-height:1.6;
   }
-  ::selection{ background:var(--gold); color:var(--ink); }
+  ::selection{ background:var(--gold); color:var(--on-accent); }
   a{ color:inherit; text-decoration:none; }
   img{ max-width:100%; display:block; }
 
@@ -53,15 +83,15 @@
     content:'';
     width:7px; height:7px; border-radius:50%;
     background:var(--teal);
-    box-shadow:0 0 0 4px rgba(79,184,166,0.15);
+    box-shadow:0 0 0 4px rgba(139,92,246,0.15);
   }
-  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:500; margin:0; }
-  .serif-italic{ font-style:italic; font-weight:500; }
+  h1,h2,h3{ font-family:'Plus Jakarta Sans', sans-serif; font-weight:600; margin:0; letter-spacing:-0.01em; }
+  .serif-italic{ font-style:italic; font-weight:600; }
 
   /* ---------- NAV ---------- */
   nav{
     position:fixed; top:0; left:0; right:0; z-index:50;
-    background:rgba(16,21,27,0.72);
+    background:rgba(var(--bg-rgb),0.72);
     backdrop-filter: blur(10px);
     border-bottom:1px solid var(--line);
   }
@@ -87,11 +117,43 @@
   .nav-cta{
     font-family:'JetBrains Mono', monospace;
     font-size:12px; letter-spacing:0.05em; text-transform:uppercase;
-    color:var(--ink); background:var(--gold);
+    color:var(--on-accent); background:var(--gold);
     padding:9px 16px; border-radius:3px;
     transition:transform .2s ease, background .2s ease;
   }
   .nav-cta:hover{ background:var(--gold-soft); transform:translateY(-1px); }
+
+  .nav-right{ display:flex; align-items:center; gap:18px; }
+
+  /* Theme toggle: pill track, half black / half white, sliding thumb */
+  .theme-toggle{
+    background:none; border:0; padding:0; cursor:pointer;
+    line-height:0; -webkit-tap-highlight-color:transparent;
+  }
+  .theme-toggle-track{
+    position:relative;
+    display:flex; align-items:center;
+    width:56px; height:28px; border-radius:999px;
+    background:linear-gradient(90deg, #0D0D0D 0%, #0D0D0D 50%, #FFFFFF 50%, #FFFFFF 100%);
+    border:1px solid var(--line-strong);
+    padding:3px;
+    transition:box-shadow .2s ease;
+  }
+  .theme-toggle:hover .theme-toggle-track{ box-shadow:0 0 0 4px rgba(139,92,246,0.15); }
+  .theme-toggle-thumb{
+    position:absolute; top:3px; left:3px;
+    width:20px; height:20px; border-radius:50%;
+    background:var(--gold);
+    box-shadow:0 1px 3px rgba(0,0,0,0.4);
+    transition:left .25s cubic-bezier(.4,0,.2,1);
+  }
+  html[data-theme="light"] .theme-toggle-thumb{ left:33px; }
+  .theme-icon{
+    position:relative; width:14px; height:14px; flex:0 0 14px;
+    z-index:1; pointer-events:none;
+  }
+  .theme-icon-moon{ color:#FFFFFF; margin-left:2px; }
+  .theme-icon-sun{ color:#0D0D0D; margin-left:auto; margin-right:2px; }
   .nav-toggle{ display:none; }
 
   /* ---------- HERO ---------- */
@@ -110,7 +172,7 @@
   .hero-grid-overlay{
     position:absolute; inset:0;
     background-image:
-      linear-gradient(180deg, rgba(16,21,27,0) 0%, rgba(16,21,27,0.5) 78%, var(--ink) 100%);
+      linear-gradient(180deg, rgba(var(--bg-rgb),0) 0%, rgba(var(--bg-rgb),0.5) 78%, var(--ink) 100%);
     pointer-events:none;
   }
   .hero .wrap{
@@ -133,7 +195,7 @@
   .hero h1 em{
     font-style:italic;
     color:var(--gold);
-    font-weight:500;
+    font-weight:600;
   }
   .hero-sub{
     margin-top:24px;
@@ -163,7 +225,7 @@
     display:inline-flex; align-items:center; gap:8px;
     transition:transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
   }
-  .btn-solid{ background:var(--gold); color:var(--ink); }
+  .btn-solid{ background:var(--gold); color:var(--on-accent); }
   .btn-solid:hover{ background:var(--gold-soft); transform:translateY(-2px); }
   .btn-outline{ border:1px solid var(--line-strong); color:var(--paper); }
   .btn-outline:hover{ border-color:var(--teal); color:var(--teal); transform:translateY(-2px); }
@@ -200,7 +262,7 @@
     position:absolute; left:14px; bottom:14px;
     font-family:'JetBrains Mono', monospace;
     font-size:11px; letter-spacing:0.05em;
-    background:rgba(16,21,27,0.82);
+    background:rgba(var(--bg-rgb),0.82);
     border:1px solid var(--line-strong);
     color:var(--teal);
     padding:6px 10px; border-radius:3px;
@@ -247,11 +309,45 @@
   .fact-value{ margin-top:8px; font-size:15px; color:var(--paper); font-weight:500; }
   .fact-value small{ display:block; font-weight:400; color:var(--muted); margin-top:4px; font-size:12.5px; }
 
-  /* ---------- SKILLS ---------- */
+  /* ---------- SKILLS (shuffling card deck) ---------- */
   #skills{ border-top:1px solid var(--line); }
-  .skills-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:4px; overflow:hidden; }
-  .skill-cat{ background:var(--ink); padding:28px 24px; }
+  .skills-deck-wrap{ display:flex; flex-direction:column; align-items:center; }
+  .skills-deck{ position:relative; width:100%; max-width:600px; height:340px; touch-action:pan-y; }
+  .skill-cat{
+    position:absolute; inset:0; background:var(--ink); border:1px solid var(--line-strong);
+    border-radius:10px; padding:32px 34px; display:flex; flex-direction:column;
+    box-shadow:0 24px 46px -22px rgba(0,0,0,0.6);
+    transition:transform .55s cubic-bezier(.22,.9,.28,1), opacity .5s ease, border-color .3s ease;
+    user-select:none; cursor:grab; will-change:transform;
+  }
+  .skill-cat:active{ cursor:grabbing; }
+  .skill-cat[data-pos="0"]{ transform:translate(0,0) scale(1) rotate(0deg); z-index:40; opacity:1; }
+  .skill-cat[data-pos="0"]:hover{ border-color:var(--teal); }
+  .skill-cat[data-pos="1"]{ transform:translate(20px,16px) scale(0.94) rotate(3deg); z-index:30; opacity:0.9; pointer-events:none; }
+  .skill-cat[data-pos="2"]{ transform:translate(38px,30px) scale(0.88) rotate(-4deg); z-index:20; opacity:0.7; pointer-events:none; }
+  .skill-cat[data-pos="3"]{ transform:translate(54px,42px) scale(0.82) rotate(6deg); z-index:10; opacity:0.45; pointer-events:none; }
   .skill-cat h3{ font-family:'JetBrains Mono', monospace; font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); font-weight:600; }
+  .skill-tags{ display:flex; flex-wrap:wrap; gap:9px; margin-top:20px; align-content:flex-start; }
+  .skill-tags span{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:'JetBrains Mono', monospace; font-size:12.5px;
+    color:var(--paper-dim); border:1px solid var(--line-strong);
+    padding:7px 11px; border-radius:3px;
+  }
+  .tech-icon{ width:15px; height:15px; flex-shrink:0; display:block; }
+  .icon-mono{ color:var(--gold-soft); display:inline-flex; }
+  .deck-controls{ display:flex; align-items:center; justify-content:center; gap:24px; margin-top:34px; }
+  .deck-hint{ text-align:center; font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--muted); letter-spacing:0.05em; margin-top:14px; }
+  .carousel-dots{ display:flex; gap:9px; }
+  .carousel-dot{ width:7px; height:7px; border-radius:50%; background:var(--line-strong); cursor:pointer; border:none; padding:0; transition:background .2s ease, transform .2s ease; }
+  .carousel-dot.active{ background:var(--gold); transform:scale(1.4); }
+  .carousel-arrow{
+    width:38px; height:38px; border:1px solid var(--line-strong); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; color:var(--paper-dim);
+    background:none; cursor:pointer; transition:all .2s ease; flex-shrink:0;
+  }
+  .carousel-arrow:hover{ border-color:var(--gold); color:var(--gold); }
+  .carousel-arrow svg{ width:15px; height:15px; }
   .skill-tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
   .skill-tags span{
     display:inline-flex; align-items:center; gap:7px;
@@ -273,17 +369,28 @@
   .tl-item:last-child{ padding-bottom:0; }
   .tl-dot{ position:absolute; left:-36px; top:4px; width:11px; height:11px; border-radius:50%; background:var(--ink-2); border:2px solid var(--gold); }
   .tl-date{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--teal); letter-spacing:0.04em; }
-  .tl-role{ font-family:'Fraunces', serif; font-size:22px; color:var(--paper); margin-top:8px; font-weight:500; }
+  .tl-role{ font-family:'Plus Jakarta Sans', sans-serif; font-size:22px; color:var(--paper); margin-top:8px; font-weight:500; }
   .tl-org{ font-size:14px; color:var(--muted); margin-top:2px; }
   .tl-list{ margin:16px 0 0; padding-left:18px; color:var(--paper-dim); font-size:15px; }
   .tl-list li{ margin-bottom:8px; }
 
-  /* ---------- PROJECTS ---------- */
+  /* ---------- PROJECTS (shuffling card deck) ---------- */
   #projects{ border-top:1px solid var(--line); }
-  .project-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:4px; overflow:hidden; }
-  .project-card{ background:var(--ink); padding:36px; display:flex; flex-direction:column; min-height:290px; transition:background .25s ease; text-decoration:none; color:inherit; cursor:pointer; }
-  .project-card:hover{ background:var(--ink-3); }
-  .project-card:hover .project-link{ border-color:var(--gold); color:var(--gold); transform:translate(2px,-2px); }
+  .project-deck-wrap{ display:flex; flex-direction:column; align-items:center; }
+  .project-deck{ position:relative; width:100%; max-width:600px; height:420px; touch-action:pan-y; }
+  .project-card{
+    position:absolute; inset:0; background:var(--ink); border:1px solid var(--line-strong);
+    border-radius:10px; padding:38px; display:flex; flex-direction:column;
+    box-shadow:0 24px 46px -22px rgba(0,0,0,0.6);
+    transition:transform .55s cubic-bezier(.22,.9,.28,1), opacity .5s ease, border-color .3s ease;
+    user-select:none; cursor:grab; will-change:transform;
+  }
+  .project-card:active{ cursor:grabbing; }
+  .project-card[data-pos="0"]{ transform:translate(0,0) scale(1) rotate(0deg); z-index:40; opacity:1; }
+  .project-card[data-pos="0"]:hover{ border-color:var(--teal); }
+  .project-card[data-pos="1"]{ transform:translate(20px,16px) scale(0.94) rotate(3deg); z-index:30; opacity:0.9; pointer-events:none; }
+  .project-card[data-pos="2"]{ transform:translate(38px,30px) scale(0.88) rotate(-4deg); z-index:20; opacity:0.7; pointer-events:none; }
+  .project-card[data-pos="3"]{ transform:translate(54px,42px) scale(0.82) rotate(6deg); z-index:10; opacity:0.45; pointer-events:none; }
   .project-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
   .project-index{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--muted); }
   .project-link{
@@ -291,14 +398,14 @@
     display:flex; align-items:center; justify-content:center; color:var(--paper-dim);
     transition:all .2s ease; flex-shrink:0;
   }
-  .project-link:hover{ border-color:var(--gold); color:var(--gold); transform:translate(2px,-2px); }
+  .project-card[data-pos="0"]:hover .project-link{ border-color:var(--gold); color:var(--gold); transform:translate(2px,-2px); }
   .project-link svg{ width:14px; height:14px; }
   .project-card h3{ font-size:23px; color:var(--paper); margin-top:20px; font-weight:500; }
   .project-desc{ color:var(--paper-dim); font-size:14.5px; margin-top:12px; flex-grow:1; }
   .project-tags{ display:flex; flex-wrap:wrap; gap:7px; margin-top:22px; }
   .project-tags span{
     font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--teal);
-    border:1px solid rgba(79,184,166,0.3); padding:4px 9px; border-radius:3px;
+    border:1px solid rgba(139,92,246,0.3); padding:4px 9px; border-radius:3px;
   }
 
   /* ---------- CERTS ---------- */
@@ -310,8 +417,28 @@
     gap:20px; flex-wrap:wrap;
   }
   .cert-row:first-child{ border-top:1px solid var(--line); }
-  .cert-name{ font-family:'Fraunces', serif; font-size:19px; color:var(--paper); font-weight:500; }
+  .cert-main{ display:flex; flex-direction:column; gap:6px; }
+  .cert-name{ font-family:'Plus Jakarta Sans', sans-serif; font-size:19px; color:var(--paper); font-weight:500; }
   .cert-issuer{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--gold); letter-spacing:0.04em; text-transform:uppercase; }
+  .cert-date{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--muted); letter-spacing:0.04em; white-space:nowrap; }
+  .cert-group-label{
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--muted); margin:44px 0 4px; padding-top:2px;
+  }
+  .cert-group-label:first-child{ margin-top:0; }
+  .cert-group-label--highlight{
+    display:inline-flex; align-items:center; gap:9px;
+    color:var(--gold);
+    padding:7px 16px;
+    border:1px solid var(--gold);
+    border-radius:999px;
+    background:color-mix(in srgb, var(--gold) 12%, transparent);
+    box-shadow:0 0 0 4px color-mix(in srgb, var(--gold) 10%, transparent);
+  }
+  .cert-group-label--highlight::before{
+    content:''; width:6px; height:6px; border-radius:50%;
+    background:var(--gold); flex:0 0 6px;
+  }
 
   /* ---------- CONTACT / FOOTER ---------- */
   #contact{ border-top:1px solid var(--line); text-align:center; }
@@ -336,13 +463,16 @@
     .hero .wrap{ grid-template-columns:1fr; padding-top:20px; }
     .hero-photo{ max-width:220px; margin:0 auto; }
     .about-grid{ grid-template-columns:1fr; gap:40px; }
-    .skills-grid{ grid-template-columns: 1fr 1fr; }
-    .project-grid{ grid-template-columns: 1fr; }
+    .skills-deck{ height:400px; }
+    .project-deck{ height:460px; }
     section{ padding:80px 0; }
     .wrap{ padding:0 22px; }
   }
   @media (max-width: 520px){
-    .skills-grid{ grid-template-columns: 1fr; }
+    .skills-deck{ height:460px; }
+    .skill-cat{ padding:26px; }
+    .project-deck{ height:520px; }
+    .project-card{ padding:28px; }
     .fact-grid{ grid-template-columns:1fr; }
     .hero-actions{ flex-direction:column; align-items:stretch; }
     .cert-row{ flex-direction:column; align-items:flex-start; gap:6px; }
@@ -366,7 +496,21 @@
       <li><a href="#projects">Projects</a></li>
       <li><a href="#certs">Certifications</a></li>
     </ul>
-    <a class="nav-cta" href="#contact">Get in touch</a>
+    <div class="nav-right">
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch between dark and light theme" aria-pressed="false">
+        <span class="theme-toggle-track">
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span class="theme-toggle-thumb"></span>
+        </span>
+      </button>
+      <a class="nav-cta" href="#contact">Get in touch</a>
+    </div>
   </div>
 </nav>
 
@@ -428,7 +572,7 @@
           </div>
           <div class="fact">
             <div class="fact-label">Focus</div>
-            <div class="fact-value">Full-Stack Developer<small>React · Node · Flutter · Python</small></div>
+            <div class="fact-value">Full-Stack &amp; Applied ML<small>React · Node · Flutter · Python</small></div>
           </div>
           <div class="fact">
             <div class="fact-label">Languages</div>
@@ -447,48 +591,74 @@
       <h2>The toolkit</h2>
       <p>Languages, frameworks, and databases I reach for when a project moves from idea to production.</p>
     </div>
-    <div class="skills-grid reveal">
-      <div class="skill-cat">
-        <h3>Languages</h3>
-        <div class="skill-tags">
-          <span><i class="devicon-python-plain colored"></i>Python</span>
-          <span><i class="devicon-java-plain colored"></i>Java</span>
-          <span><i class="devicon-javascript-plain colored"></i>JavaScript</span>
-          <span><i class="devicon-dart-plain colored"></i>Dart</span>
-          <span><i class="devicon-html5-plain colored"></i>HTML5</span>
-          <span><i class="devicon-css3-plain colored"></i>CSS3</span>
-          <span><i class="devicon-c-plain colored"></i>C</span>
+    <div class="skills-deck-wrap reveal">
+      <div class="skills-deck" id="skillsDeck">
+
+        <div class="skill-cat">
+          <h3>Languages</h3>
+          <div class="skill-tags">
+          <span><svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><linearGradient id="python-original-a" gradientUnits="userSpaceOnUse" x1="70.252" y1="1237.476" x2="170.659" y2="1151.089" gradientTransform="matrix(.563 0 0 -.568 -29.215 707.817)"><stop offset="0" stop-color="#5A9FD4"/><stop offset="1" stop-color="#306998"/></linearGradient><linearGradient id="python-original-b" gradientUnits="userSpaceOnUse" x1="209.474" y1="1098.811" x2="173.62" y2="1149.537" gradientTransform="matrix(.563 0 0 -.568 -29.215 707.817)"><stop offset="0" stop-color="#FFD43B"/><stop offset="1" stop-color="#FFE873"/></linearGradient><path fill="url(#python-original-a)" d="M63.391 1.988c-4.222.02-8.252.379-11.8 1.007-10.45 1.846-12.346 5.71-12.346 12.837v9.411h24.693v3.137H29.977c-7.176 0-13.46 4.313-15.426 12.521-2.268 9.405-2.368 15.275 0 25.096 1.755 7.311 5.947 12.519 13.124 12.519h8.491V67.234c0-8.151 7.051-15.34 15.426-15.34h24.665c6.866 0 12.346-5.654 12.346-12.548V15.833c0-6.693-5.646-11.72-12.346-12.837-4.244-.706-8.645-1.027-12.866-1.008zM50.037 9.557c2.55 0 4.634 2.117 4.634 4.721 0 2.593-2.083 4.69-4.634 4.69-2.56 0-4.633-2.097-4.633-4.69-.001-2.604 2.073-4.721 4.633-4.721z" transform="translate(0 10.26)"/><path fill="url(#python-original-b)" d="M91.682 28.38v10.966c0 8.5-7.208 15.655-15.426 15.655H51.591c-6.756 0-12.346 5.783-12.346 12.549v23.515c0 6.691 5.818 10.628 12.346 12.547 7.816 2.297 15.312 2.713 24.665 0 6.216-1.801 12.346-5.423 12.346-12.547v-9.412H63.938v-3.138h37.012c7.176 0 9.852-5.005 12.348-12.519 2.578-7.735 2.467-15.174 0-25.096-1.774-7.145-5.161-12.521-12.348-12.521h-9.268zM77.809 87.927c2.561 0 4.634 2.097 4.634 4.692 0 2.602-2.074 4.719-4.634 4.719-2.55 0-4.633-2.117-4.633-4.719 0-2.595 2.083-4.692 4.633-4.692z" transform="translate(0 10.26)"/><radialGradient id="python-original-c" cx="1825.678" cy="444.45" r="26.743" gradientTransform="matrix(0 -.24 -1.055 0 532.979 557.576)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#B8B8B8" stop-opacity=".498"/><stop offset="1" stop-color="#7F7F7F" stop-opacity="0"/></radialGradient><path opacity=".444" fill="url(#python-original-c)" d="M97.309 119.597c0 3.543-14.816 6.416-33.091 6.416-18.276 0-33.092-2.873-33.092-6.416 0-3.544 14.815-6.417 33.092-6.417 18.275 0 33.091 2.872 33.091 6.417z"/></svg>
+Python</span>
+          <span><svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#0074BD" d="M47.617 98.12s-4.767 2.774 3.397 3.71c9.892 1.13 14.947.968 25.845-1.092 0 0 2.871 1.795 6.873 3.351-24.439 10.47-55.308-.607-36.115-5.969zm-2.988-13.665s-5.348 3.959 2.823 4.805c10.567 1.091 18.91 1.18 33.354-1.6 0 0 1.993 2.025 5.132 3.131-29.542 8.64-62.446.68-41.309-6.336z"/><path fill="#EA2D2E" d="M69.802 61.271c6.025 6.935-1.58 13.17-1.58 13.17s15.289-7.891 8.269-17.777c-6.559-9.215-11.587-13.792 15.635-29.58 0 .001-42.731 10.67-22.324 34.187z"/><path fill="#0074BD" d="M102.123 108.229s3.529 2.91-3.888 5.159c-14.102 4.272-58.706 5.56-71.094.171-4.451-1.938 3.899-4.625 6.526-5.192 2.739-.593 4.303-.485 4.303-.485-4.953-3.487-32.013 6.85-13.743 9.815 49.821 8.076 90.817-3.637 77.896-9.468zM49.912 70.294s-22.686 5.389-8.033 7.348c6.188.828 18.518.638 30.011-.326 9.39-.789 18.813-2.474 18.813-2.474s-3.308 1.419-5.704 3.053c-23.042 6.061-67.544 3.238-54.731-2.958 10.832-5.239 19.644-4.643 19.644-4.643zm40.697 22.747c23.421-12.167 12.591-23.86 5.032-22.285-1.848.385-2.677.72-2.677.72s.688-1.079 2-1.543c14.953-5.255 26.451 15.503-4.823 23.725 0-.002.359-.327.468-.617z"/><path fill="#EA2D2E" d="M76.491 1.587S89.459 14.563 64.188 34.51c-20.266 16.006-4.621 25.13-.007 35.559-11.831-10.673-20.509-20.07-14.688-28.815C58.041 28.42 81.722 22.195 76.491 1.587z"/><path fill="#0074BD" d="M52.214 126.021c22.476 1.437 57-.8 57.817-11.436 0 0-1.571 4.032-18.577 7.231-19.186 3.612-42.854 3.191-56.887.874 0 .001 2.875 2.381 17.647 3.331z"/></svg>Java</span>
+          <span><svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#F0DB4F" d="M1.408 1.408h125.184v125.185H1.408z"/><path fill="#323330" d="M116.347 96.736c-.917-5.711-4.641-10.508-15.672-14.981-3.832-1.761-8.104-3.022-9.377-5.926-.452-1.69-.512-2.642-.226-3.665.821-3.32 4.784-4.355 7.925-3.403 2.023.678 3.938 2.237 5.093 4.724 5.402-3.498 5.391-3.475 9.163-5.879-1.381-2.141-2.118-3.129-3.022-4.045-3.249-3.629-7.676-5.498-14.756-5.355l-3.688.477c-3.534.893-6.902 2.748-8.877 5.235-5.926 6.724-4.236 18.492 2.975 23.335 7.104 5.332 17.54 6.545 18.873 11.531 1.297 6.104-4.486 8.08-10.234 7.378-4.236-.881-6.592-3.034-9.139-6.949-4.688 2.713-4.688 2.713-9.508 5.485 1.143 2.499 2.344 3.63 4.26 5.795 9.068 9.198 31.76 8.746 35.83-5.176.165-.478 1.261-3.666.38-8.581zM69.462 58.943H57.753l-.048 30.272c0 6.438.333 12.34-.714 14.149-1.713 3.558-6.152 3.117-8.175 2.427-2.059-1.012-3.106-2.451-4.319-4.485-.333-.584-.583-1.036-.667-1.071l-9.52 5.83c1.583 3.249 3.915 6.069 6.902 7.901 4.462 2.678 10.459 3.499 16.731 2.059 4.082-1.189 7.604-3.652 9.448-7.401 2.666-4.915 2.094-10.864 2.07-17.444.06-10.735.001-21.468.001-32.237z"/></svg>JavaScript</span>
+          <span><svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#00c4b3" d="M35.2 34.9l-8.3-8.3v59.7l.1 2.8c0 1.3.2 2.8.7 4.3l65.6 23.1 16.3-7.2-74.4-74.4z"/><path d="M27.7 93.4zm81.9 15.9l-16.3 7.2-65.4-23.1c1.3 4.8 4 10.1 7 13.2l21.3 21.2 47.6.1 5.8-18.6z" fill="#22d3c5"/><path fill="#0075c9" d="M1.7 65.1C-.4 67.3.7 72 4 75.5l14.7 14.8 9.2 3.3c-.3-1.5-.7-3-.7-4.3l-.1-2.8-.2-59.8m82.7 82.6l7.2-16.4-23-65.6c-1.5-.3-3-.6-4.3-.7l-2.9-.1-59.6.1"/><path d="M93.6 27.3c.2 0 .2 0 0 0 .2 0 .2 0 0 0zm16 82l17.7-5.8V54.8l-20.4-20.5c-3-3-8.3-5.8-13.2-7l23.1 65.6" fill="#00a8e1"/><path fill="#00c4b3" d="M90.5 18.2L75.7 3.5c-3.4-3.4-8-4.4-10.4-2.3L26.9 26.6h59.5l2.9.1c1.3 0 2.8.2 4.3.7l-3.1-9.2z"/></svg>Dart</span>
+          <span><svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#E44D26" d="M19.037 113.876L9.032 1.661h109.936l-10.016 112.198-45.019 12.48z"/><path fill="#F16529" d="M64 116.8l36.378-10.086 8.559-95.878H64z"/><path fill="#EBEBEB" d="M64 52.455H45.788L44.53 38.361H64V24.599H29.489l.33 3.692 3.382 37.927H64zm0 35.743l-.061.017-15.327-4.14-.979-10.975H33.816l1.928 21.609 28.193 7.826.063-.017z"/><path fill="#fff" d="M63.952 52.455v13.763h16.947l-1.597 17.849-15.35 4.143v14.319l28.215-7.82.207-2.325 3.234-36.233.335-3.696h-3.708zm0-27.856v13.762h33.244l.276-3.092.628-6.978.329-3.692z"/></svg>HTML5</span>
+          <span><svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#1572B6" d="M18.814 114.123L8.76 1.352h110.48l-10.064 112.754-45.243 12.543-45.119-12.526z"/><path fill="#33A9DC" d="M64.001 117.062l36.559-10.136 8.601-96.354h-45.16v106.49z"/><path fill="#fff" d="M64.001 51.429h18.302l1.264-14.163H64.001V23.435h34.682l-.332 3.711-3.4 38.114h-30.95V51.429z"/><path fill="#EBEBEB" d="M64.083 87.349l-.061.018-15.403-4.159-.985-11.031H33.752l1.937 21.717 28.331 7.863.063-.018v-14.39z"/><path fill="#fff" d="M81.127 64.675l-1.666 18.522-15.426 4.164v14.39l28.354-7.858.208-2.337 2.406-26.881H81.127z"/><path fill="#EBEBEB" d="M64.048 23.435v13.831H30.64l-.277-3.108-.63-7.012-.331-3.711h34.646zm-.047 27.996v13.831H48.792l-.277-3.108-.631-7.012-.33-3.711h16.447z"/></svg>CSS3</span>
+          <span><svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#a9bacd" d="M125 50c-4-32-24-50-62-50C29 0 3 24 3 64c0 39 24 64 64 64 32 0 55-19 58-50H87c-2 11-8 20-20 20-21 0-24-16-24-33 0-23 8-35 22-35 13 0 20 7 22 20z" /></svg>
+C</span>
+          </div>
         </div>
-      </div>
-      <div class="skill-cat">
-        <h3>Frameworks &amp; Tools</h3>
-        <div class="skill-tags">
-          <span><i class="devicon-react-original colored"></i>React.js</span>
-          <span><i class="devicon-nodejs-plain colored"></i>Node.js</span>
-          <span><i class="devicon-express-original mono-icon"></i>Express.js</span>
-          <span><i class="devicon-flutter-plain colored"></i>Flutter</span>
-          <span><i class="devicon-firebase-plain colored"></i>Firebase</span>
-          <span><i class="devicon-git-plain colored"></i>Git</span>
-          <span><i class="devicon-github-original mono-icon"></i>GitHub</span>
-          <span><i class="devicon-androidstudio-plain colored"></i>Android Studio</span>
+
+        <div class="skill-cat">
+          <h3>Frameworks &amp; Tools</h3>
+          <div class="skill-tags">
+          <span><svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><g fill="#61DAFB"><circle cx="64" cy="64" r="11.4"/><path d="M107.3 45.2c-2.2-.8-4.5-1.6-6.9-2.3.6-2.4 1.1-4.8 1.5-7.1 2.1-13.2-.2-22.5-6.6-26.1-1.9-1.1-4-1.6-6.4-1.6-7 0-15.9 5.2-24.9 13.9-9-8.7-17.9-13.9-24.9-13.9-2.4 0-4.5.5-6.4 1.6-6.4 3.7-8.7 13-6.6 26.1.4 2.3.9 4.7 1.5 7.1-2.4.7-4.7 1.4-6.9 2.3C8.2 50 1.4 56.6 1.4 64s6.9 14 19.3 18.8c2.2.8 4.5 1.6 6.9 2.3-.6 2.4-1.1 4.8-1.5 7.1-2.1 13.2.2 22.5 6.6 26.1 1.9 1.1 4 1.6 6.4 1.6 7.1 0 16-5.2 24.9-13.9 9 8.7 17.9 13.9 24.9 13.9 2.4 0 4.5-.5 6.4-1.6 6.4-3.7 8.7-13 6.6-26.1-.4-2.3-.9-4.7-1.5-7.1 2.4-.7 4.7-1.4 6.9-2.3 12.5-4.8 19.3-11.4 19.3-18.8s-6.8-14-19.3-18.8zM92.5 14.7c4.1 2.4 5.5 9.8 3.8 20.3-.3 2.1-.8 4.3-1.4 6.6-5.2-1.2-10.7-2-16.5-2.5-3.4-4.8-6.9-9.1-10.4-13 7.4-7.3 14.9-12.3 21-12.3 1.3 0 2.5.3 3.5.9zM81.3 74c-1.8 3.2-3.9 6.4-6.1 9.6-3.7.3-7.4.4-11.2.4-3.9 0-7.6-.1-11.2-.4-2.2-3.2-4.2-6.4-6-9.6-1.9-3.3-3.7-6.7-5.3-10 1.6-3.3 3.4-6.7 5.3-10 1.8-3.2 3.9-6.4 6.1-9.6 3.7-.3 7.4-.4 11.2-.4 3.9 0 7.6.1 11.2.4 2.2 3.2 4.2 6.4 6 9.6 1.9 3.3 3.7 6.7 5.3 10-1.7 3.3-3.4 6.6-5.3 10zm8.3-3.3c1.5 3.5 2.7 6.9 3.8 10.3-3.4.8-7 1.4-10.8 1.9 1.2-1.9 2.5-3.9 3.6-6 1.2-2.1 2.3-4.2 3.4-6.2zM64 97.8c-2.4-2.6-4.7-5.4-6.9-8.3 2.3.1 4.6.2 6.9.2 2.3 0 4.6-.1 6.9-.2-2.2 2.9-4.5 5.7-6.9 8.3zm-18.6-15c-3.8-.5-7.4-1.1-10.8-1.9 1.1-3.3 2.3-6.8 3.8-10.3 1.1 2 2.2 4.1 3.4 6.1 1.2 2.2 2.4 4.1 3.6 6.1zm-7-25.5c-1.5-3.5-2.7-6.9-3.8-10.3 3.4-.8 7-1.4 10.8-1.9-1.2 1.9-2.5 3.9-3.6 6-1.2 2.1-2.3 4.2-3.4 6.2zM64 30.2c2.4 2.6 4.7 5.4 6.9 8.3-2.3-.1-4.6-.2-6.9-.2-2.3 0-4.6.1-6.9.2 2.2-2.9 4.5-5.7 6.9-8.3zm22.2 21l-3.6-6c3.8.5 7.4 1.1 10.8 1.9-1.1 3.3-2.3 6.8-3.8 10.3-1.1-2.1-2.2-4.2-3.4-6.2zM31.7 35c-1.7-10.5-.3-17.9 3.8-20.3 1-.6 2.2-.9 3.5-.9 6 0 13.5 4.9 21 12.3-3.5 3.8-7 8.2-10.4 13-5.8.5-11.3 1.4-16.5 2.5-.6-2.3-1-4.5-1.4-6.6zM7 64c0-4.7 5.7-9.7 15.7-13.4 2-.8 4.2-1.5 6.4-2.1 1.6 5 3.6 10.3 6 15.6-2.4 5.3-4.5 10.5-6 15.5C15.3 75.6 7 69.6 7 64zm28.5 49.3c-4.1-2.4-5.5-9.8-3.8-20.3.3-2.1.8-4.3 1.4-6.6 5.2 1.2 10.7 2 16.5 2.5 3.4 4.8 6.9 9.1 10.4 13-7.4 7.3-14.9 12.3-21 12.3-1.3 0-2.5-.3-3.5-.9zM96.3 93c1.7 10.5.3 17.9-3.8 20.3-1 .6-2.2.9-3.5.9-6 0-13.5-4.9-21-12.3 3.5-3.8 7-8.2 10.4-13 5.8-.5 11.3-1.4 16.5-2.5.6 2.3 1 4.5 1.4 6.6zm9-15.6c-2 .8-4.2 1.5-6.4 2.1-1.6-5-3.6-10.3-6-15.6 2.4-5.3 4.5-10.5 6-15.5 13.8 4 22.1 10 22.1 15.6 0 4.7-5.8 9.7-15.7 13.4z"/></g></svg>React.js</span>
+          <span><svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="url(#a)" d="M66.958.825a6.07 6.07 0 0 0-6.035 0L11.103 29.76c-1.895 1.072-2.96 3.095-2.96 5.24v57.988c0 2.143 1.183 4.167 2.958 5.24l49.82 28.934a6.07 6.07 0 0 0 6.036 0l49.82-28.935c1.894-1.072 2.958-3.096 2.958-5.24V35c0-2.144-1.183-4.167-2.958-5.24z"/><path fill="url(#b)" d="M116.897 29.76 66.841.825A8.161 8.161 0 0 0 65.302.23L9.21 96.798a6.251 6.251 0 0 0 1.657 1.43l50.057 28.934c1.42.833 3.076 1.072 4.615.595l52.66-96.925a3.702 3.702 0 0 0-1.302-1.072z"/><path fill="url(#c)" d="M116.898 98.225c1.42-.833 2.485-2.262 2.958-3.81L65.066.108c-1.42-.238-2.959-.119-4.26.715L11.104 29.639l53.606 98.355c.71-.12 1.54-.358 2.25-.715z"/><defs><linearGradient id="a" x1="34.513" x2="27.157" y1="15.535" y2="30.448" gradientTransform="translate(-129.242 -73.715) scale(6.18523)" gradientUnits="userSpaceOnUse"><stop stop-color="#3F873F"/><stop offset=".33" stop-color="#3F8B3D"/><stop offset=".637" stop-color="#3E9638"/><stop offset=".934" stop-color="#3DA92E"/><stop offset="1" stop-color="#3DAE2B"/></linearGradient><linearGradient id="b" x1="30.009" x2="50.533" y1="23.359" y2="8.288" gradientTransform="translate(-129.242 -73.715) scale(6.18523)" gradientUnits="userSpaceOnUse"><stop offset=".138" stop-color="#3F873F"/><stop offset=".402" stop-color="#52A044"/><stop offset=".713" stop-color="#64B749"/><stop offset=".908" stop-color="#6ABF4B"/></linearGradient><linearGradient id="c" x1="21.917" x2="40.555" y1="22.261" y2="22.261" gradientTransform="translate(-129.242 -73.715) scale(6.18523)" gradientUnits="userSpaceOnUse"><stop offset=".092" stop-color="#6ABF4B"/><stop offset=".287" stop-color="#64B749"/><stop offset=".598" stop-color="#52A044"/><stop offset=".862" stop-color="#3F873F"/></linearGradient></defs></svg>
+Node.js</span>
+          <span><span class="icon-mono"><svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="currentColor" d="M126.67 98.44c-4.56 1.16-7.38.05-9.91-3.75-5.68-8.51-11.95-16.63-18-24.9-.78-1.07-1.59-2.12-2.6-3.45C89 76 81.85 85.2 75.14 94.77c-2.4 3.42-4.92 4.91-9.4 3.7l26.92-36.13L67.6 29.71c4.31-.84 7.29-.41 9.93 3.45 5.83 8.52 12.26 16.63 18.67 25.21 6.45-8.55 12.8-16.67 18.8-25.11 2.41-3.42 5-4.72 9.33-3.46-3.28 4.35-6.49 8.63-9.72 12.88-4.36 5.73-8.64 11.53-13.16 17.14-1.61 2-1.35 3.3.09 5.19C109.9 76 118.16 87.1 126.67 98.44zM1.33 61.74c.72-3.61 1.2-7.29 2.2-10.83 6-21.43 30.6-30.34 47.5-17.06C60.93 41.64 63.39 52.62 62.9 65H7.1c-.84 22.21 15.15 35.62 35.53 28.78 7.15-2.4 11.36-8 13.47-15 1.07-3.51 2.84-4.06 6.14-3.06-1.69 8.76-5.52 16.08-13.52 20.66-12 6.86-29.13 4.64-38.14-4.89C5.26 85.89 3 78.92 2 71.39c-.15-1.2-.46-2.38-.7-3.57q.03-3.04.03-6.08zm5.87-1.49h50.43c-.33-16.06-10.33-27.47-24-27.57-15-.12-25.78 11.02-26.43 27.57z"/></svg></span>Express.js</span>
+          <span><svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><g fill="#3FB6D3"><path d="M12.3 64.2L76.3 0h39.4L32.1 83.6zM76.3 128h39.4L81.6 93.9l34.1-34.8H76.3L42.2 93.5z"/></g><path fill="#27AACD" d="M81.6 93.9l-20-20-19.4 19.6 19.4 19.6z"/><path fill="#19599A" d="M115.7 128L81.6 93.9l-20 19.2L76.3 128z"/><linearGradient id="flutter-original-a" gradientUnits="userSpaceOnUse" x1="59.365" y1="116.36" x2="86.825" y2="99.399"><stop offset="0" stop-color="#1b4e94"/><stop offset=".63" stop-color="#1a5497"/><stop offset="1" stop-color="#195a9b"/></linearGradient><path fill="url(#flutter-original-a)" d="M61.6 113.1l30.8-8.4-10.8-10.8z"/></svg>Flutter</span>
+          <span><svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#ffa000" d="M17.474 103.276 33.229 2.462a2.91 2.91 0 0 1 5.44-.924l16.294 30.39 6.494-12.366a2.91 2.91 0 0 1 5.15 0l43.97 83.714H17.474Z"/><path fill="#f57c00" d="M71.903 64.005 54.955 31.913l-37.481 71.363Z"/><path fill="#ffca28" d="M110.577 103.276 98.51 28.604a2.913 2.913 0 0 0-1.984-2.286 2.906 2.906 0 0 0-2.94.714l-76.112 76.243 42.115 23.618a8.728 8.728 0 0 0 8.51 0l42.478-23.618Z"/><path fill="#fff" fill-opacity=".2" d="M98.51 28.604a2.913 2.913 0 0 0-1.984-2.286 2.906 2.906 0 0 0-2.94.713L78.479 42.178 66.6 19.562a2.91 2.91 0 0 0-5.15 0l-6.494 12.365L38.662 1.538A2.91 2.91 0 0 0 35.605.044a2.907 2.907 0 0 0-2.384 2.425L17.474 103.276h-.051l.05.058.415.204 75.676-75.764a2.91 2.91 0 0 1 4.932 1.571l11.965 74.003.116-.073L98.51 28.603Zm-80.898 74.534L33.228 3.182A2.91 2.91 0 0 1 35.613.756a2.911 2.911 0 0 1 3.057 1.495l16.292 30.39 6.495-12.366a2.91 2.91 0 0 1 5.15 0L78.245 42.41 17.61 103.138Z"/><path fill="#a52714" d="M68.099 126.18a8.728 8.728 0 0 1-8.51 0l-42.015-23.55-.102.647 42.115 23.61a8.728 8.728 0 0 0 8.51 0l42.48-23.61-.11-.67-42.37 23.575z" opacity=".2"/></svg>
+Firebase</span>
+          <span><svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#F34F29" d="M124.737 58.378L69.621 3.264c-3.172-3.174-8.32-3.174-11.497 0L46.68 14.71l14.518 14.518c3.375-1.139 7.243-.375 9.932 2.314 2.703 2.706 3.461 6.607 2.294 9.993l13.992 13.993c3.385-1.167 7.292-.413 9.994 2.295 3.78 3.777 3.78 9.9 0 13.679a9.673 9.673 0 01-13.683 0 9.677 9.677 0 01-2.105-10.521L68.574 47.933l-.002 34.341a9.708 9.708 0 012.559 1.828c3.778 3.777 3.778 9.898 0 13.683-3.779 3.777-9.904 3.777-13.679 0-3.778-3.784-3.778-9.905 0-13.683a9.65 9.65 0 013.167-2.11V47.333a9.581 9.581 0 01-3.167-2.111c-2.862-2.86-3.551-7.06-2.083-10.576L41.056 20.333 3.264 58.123a8.133 8.133 0 000 11.5l55.117 55.114c3.174 3.174 8.32 3.174 11.499 0l54.858-54.858a8.135 8.135 0 00-.001-11.501z"/></svg>Git</span>
+          <span><span class="icon-mono"><svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><g fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M64 5.103c-33.347 0-60.388 27.035-60.388 60.388 0 26.682 17.303 49.317 41.297 57.303 3.017.56 4.125-1.31 4.125-2.905 0-1.44-.056-6.197-.082-11.243-16.8 3.653-20.345-7.125-20.345-7.125-2.747-6.98-6.705-8.836-6.705-8.836-5.48-3.748.413-3.67.413-3.67 6.063.425 9.257 6.223 9.257 6.223 5.386 9.23 14.127 6.562 17.573 5.02.542-3.903 2.107-6.568 3.834-8.076-13.413-1.525-27.514-6.704-27.514-29.843 0-6.593 2.36-11.98 6.223-16.21-.628-1.52-2.695-7.662.584-15.98 0 0 5.07-1.623 16.61 6.19C53.7 35 58.867 34.327 64 34.304c5.13.023 10.3.694 15.127 2.033 11.526-7.813 16.59-6.19 16.59-6.19 3.287 8.317 1.22 14.46.593 15.98 3.872 4.23 6.215 9.617 6.215 16.21 0 23.194-14.127 28.3-27.574 29.796 2.167 1.874 4.097 5.55 4.097 11.183 0 8.08-.07 14.583-.07 16.572 0 1.607 1.088 3.49 4.148 2.897 23.98-7.994 41.263-30.622 41.263-57.294C124.388 32.14 97.35 5.104 64 5.104z"/><path d="M26.484 91.806c-.133.3-.605.39-1.035.185-.44-.196-.685-.605-.543-.906.13-.31.603-.395 1.04-.188.44.197.69.61.537.91zm2.446 2.729c-.287.267-.85.143-1.232-.28-.396-.42-.47-.983-.177-1.254.298-.266.844-.14 1.24.28.394.426.472.984.17 1.255zM31.312 98.012c-.37.258-.976.017-1.35-.52-.37-.538-.37-1.183.01-1.44.373-.258.97-.025 1.35.507.368.545.368 1.19-.01 1.452zm3.261 3.361c-.33.365-1.036.267-1.552-.23-.527-.487-.674-1.18-.343-1.544.336-.366 1.045-.264 1.564.23.527.486.686 1.18.333 1.543zm4.5 1.951c-.147.473-.825.688-1.51.486-.683-.207-1.13-.76-.99-1.238.14-.477.823-.7 1.512-.485.683.206 1.13.756.988 1.237zm4.943.361c.017.498-.563.91-1.28.92-.723.017-1.308-.387-1.315-.877 0-.503.568-.91 1.29-.924.717-.013 1.306.387 1.306.88zm4.598-.782c.086.485-.413.984-1.126 1.117-.7.13-1.35-.172-1.44-.653-.086-.498.422-.997 1.122-1.126.714-.123 1.354.17 1.444.663zm0 0"/></g></svg></span>GitHub</span>
+          <span><svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#073042" d="M51.3 17.7H23.2C17.6 17.7 13 22.3 13 28c-.2 5.5 4.2 10.1 9.7 10.3h28.9l-.3-20.6z"/><path fill="#4285F4" d="M115 109.3H23.2c-5.7 0-10.2-4.6-10.2-10.3V27.9c0 5.7 4.6 10.3 10.2 10.4h76.9s15-1.3 15 10v61z"/><path fill="#3870B2" d="M72.2 72.9C76.3 69.8 77.1 64 74 60c-1.7-2.2-4.3-3.6-7.1-3.7h.3c.5-.1 1.1-.1 1.6 0v-5.7c0-.7-.3-1.3-.9-1.6-.9-.5-2-.2-2.5.7-.2.3-.3.6-.2 1v5.8c-5 .8-8.5 5.5-7.7 10.6v.1c.4 2.4 1.7 4.6 3.7 6l-16.9 36.2h11l7.8-16.6c.9-2 3.3-2.9 5.4-1.9.8.4 1.5 1.1 1.9 1.9l8.1 16.6h11.2L72.2 72.9zm-5.7-1.6c-3.2 0-5.7-2.6-5.7-5.8 0-3.2 2.6-5.7 5.8-5.6 1.5 0 2.8.6 3.9 1.6 2.3 2.2 2.3 5.8.1 8.1-1 1-2.5 1.7-4.1 1.7z"/><path fill="#FFF" d="M45.2 22.7h39.4v7.2H45.2v-7.2z"/><path fill="#073042" d="M63.5 59.8c3.1 0 5.7 2.6 5.6 5.8 0 3.1-2.6 5.7-5.8 5.6-3.1 0-5.6-2.6-5.6-5.7 0-1.5.6-2.9 1.7-4s2.6-1.7 4.1-1.7zm2.2-3.3v-6c0-.7-.3-1.3-.9-1.6-.9-.5-2-.2-2.5.7-.2.3-.3.6-.2 1v5.8c-5 .8-8.5 5.5-7.7 10.6v.1c.4 2.4 1.7 4.6 3.7 6l-21.3 45.7c-.8 1.6-.7 3.6.4 5.1 1.6 2.3 4.7 2.9 7 1.3.8-.5 1.4-1.3 1.8-2.1l14.2-30.4c.9-2 3.3-2.9 5.4-1.9.8.4 1.5 1.1 1.9 1.9L82 122.8c1.2 2.5 4.2 3.5 6.7 2.3 2.5-1.2 3.5-4.2 2.3-6.7L69.1 72.9c4-3.2 4.7-9.1 1.5-13.1-1.2-1.6-2.9-2.7-4.9-3.3"/><path fill="#3DDC84" d="M78.8 29.1c-1.5 0-2.7-1.1-2.7-2.6 0-.7.3-1.5.8-2 1.1-1 2.7-1 3.8 0 .5.5.8 1.2.8 1.9-.1 1.5-1.2 2.6-2.7 2.7M49.2 29c-1.5 0-2.7-1.2-2.7-2.6 0-.7.3-1.4.8-1.9.9-1.1 2.6-1.3 3.7-.4h.1c1.1 1 1.2 2.7.2 3.8l-.3.4c-.5.5-1.2.8-1.9.8m30.5-16.2l5.3-9.2c.3-.5.1-1.1-.3-1.5-.5-.2-1-.1-1.3.3L77.8 12C69 8.1 59 8.1 50.3 12l-5.4-9.4c-.2-.3-.6-.6-1-.6s-.8.2-1 .6c-.2.3-.2.8 0 1.1l5.4 9.2C38.9 18 32.8 27.6 31.9 38.2h64.2c-.8-10.7-7-20.2-16.4-25.3"/><path fill="#073042" d="M105.6 58.1h-4.2c-.2.1-.4.3-.4.6v66.5c0 .3.2.5.5.5h4.4c5.1 0 9.2-4.2 9.2-9.2V48.8c0 5.1-4.1 9.2-9.2 9.2h-.3z"/></svg>
+Android Studio</span>
+          </div>
         </div>
-      </div>
-      <div class="skill-cat">
-        <h3>Databases</h3>
-        <div class="skill-tags">
-          <span><i class="devicon-mysql-plain colored"></i>MySQL</span>
-          <span><i class="devicon-mongodb-plain colored"></i>MongoDB</span>
-          <span><i class="devicon-sqlite-plain colored"></i>SQLite</span>
-          <span><i class="devicon-oracle-original colored"></i>Oracle DB</span>
-          <span><i class="devicon-firebase-plain colored"></i>Firestore</span>
+
+        <div class="skill-cat">
+          <h3>Databases</h3>
+          <div class="skill-tags">
+          <span><svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#00618A" d="M117.688 98.242c-6.973-.191-12.297.461-16.852 2.379-1.293.547-3.355.559-3.566 2.18.711.746.82 1.859 1.387 2.777 1.086 1.754 2.922 4.113 4.559 5.352 1.789 1.348 3.633 2.793 5.551 3.961 3.414 2.082 7.223 3.27 10.504 5.352 1.938 1.23 3.859 2.777 5.75 4.164.934.684 1.563 1.75 2.773 2.18v-.195c-.637-.812-.801-1.93-1.387-2.777l-2.578-2.578c-2.52-3.344-5.719-6.281-9.117-8.719-2.711-1.949-8.781-4.578-9.91-7.73l-.199-.199c1.922-.219 4.172-.914 5.949-1.391 2.98-.797 5.645-.59 8.719-1.387l4.164-1.187v-.793c-1.555-1.594-2.664-3.707-4.359-5.152-4.441-3.781-9.285-7.555-14.273-10.703-2.766-1.746-6.184-2.883-9.117-4.363-.988-.496-2.719-.758-3.371-1.586-1.539-1.961-2.379-4.449-3.566-6.738-2.488-4.793-4.93-10.023-7.137-15.066-1.504-3.437-2.484-6.828-4.359-9.91-9-14.797-18.687-23.73-33.695-32.508-3.195-1.867-7.039-2.605-11.102-3.57l-6.543-.395c-1.332-.555-2.715-2.184-3.965-2.977C16.977 3.52 4.223-3.312.539 5.672-1.785 11.34 4.016 16.871 6.09 19.746c1.457 2.012 3.32 4.273 4.359 6.539.688 1.492.805 2.984 1.391 4.559 1.438 3.883 2.695 8.109 4.559 11.695.941 1.816 1.98 3.727 3.172 5.352.727.996 1.98 1.438 2.18 2.973-1.227 1.715-1.297 4.375-1.984 6.543-3.098 9.77-1.926 21.91 2.578 29.137 1.383 2.223 4.641 6.98 9.117 5.156 3.918-1.598 3.043-6.539 4.164-10.902.254-.988.098-1.715.594-2.379v.199l3.57 7.133c2.641 4.254 7.324 8.699 11.297 11.699 2.059 1.555 3.68 4.242 6.344 5.152v-.199h-.199c-.516-.805-1.324-1.137-1.98-1.781-1.551-1.523-3.277-3.414-4.559-5.156-3.613-4.902-6.805-10.27-9.711-15.855-1.391-2.668-2.598-5.609-3.77-8.324-.453-1.047-.445-2.633-1.387-3.172-1.281 1.988-3.172 3.598-4.164 5.945-1.582 3.754-1.789 8.336-2.375 13.082-.348.125-.195.039-.398.199-2.762-.668-3.73-3.508-4.758-5.949-2.594-6.164-3.078-16.09-.793-23.191.59-1.836 3.262-7.617 2.18-9.316-.516-1.691-2.219-2.672-3.172-3.965-1.18-1.598-2.355-3.703-3.172-5.551-2.125-4.805-3.113-10.203-5.352-15.062-1.07-2.324-2.875-4.676-4.359-6.738-1.645-2.289-3.484-3.977-4.758-6.742-.453-.984-1.066-2.559-.398-3.566.215-.684.516-.969 1.191-1.191 1.148-.887 4.352.297 5.547.793 3.18 1.32 5.832 2.578 8.527 4.363 1.289.855 2.598 2.512 4.16 2.973h1.785c2.789.641 5.914.195 8.523.988 4.609 1.402 8.738 3.582 12.488 5.949 11.422 7.215 20.766 17.48 27.156 29.734 1.027 1.973 1.473 3.852 2.379 5.945 1.824 4.219 4.125 8.559 5.941 12.688 1.816 4.113 3.582 8.27 6.148 11.695 1.348 1.801 6.551 2.766 8.918 3.766 1.66.699 4.379 1.43 5.949 2.379 3 1.809 5.906 3.965 8.723 5.945 1.402.992 5.73 3.168 5.945 4.957zm-88.605-75.52c-1.453-.027-2.48.156-3.566.395v.199h.195c.695 1.422 1.918 2.34 2.777 3.566l1.98 4.164.199-.195c1.227-.867 1.789-2.25 1.781-4.363-.492-.52-.562-1.164-.992-1.785-.562-.824-1.66-1.289-2.375-1.98zm0 0"/></svg>
+MySQL</span>
+          <span><svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill-rule="evenodd" clip-rule="evenodd" fill="#439934" d="M88.038 42.812c1.605 4.643 2.761 9.383 3.141 14.296.472 6.095.256 12.147-1.029 18.142-.035.165-.109.32-.164.48-.403.001-.814-.049-1.208.012-3.329.523-6.655 1.065-9.981 1.604-3.438.557-6.881 1.092-10.313 1.687-1.216.21-2.721-.041-3.212 1.641-.014.046-.154.054-.235.08l.166-10.051-.169-24.252 1.602-.275c2.62-.429 5.24-.864 7.862-1.281 3.129-.497 6.261-.98 9.392-1.465 1.381-.215 2.764-.412 4.148-.618z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#45A538" d="M61.729 110.054c-1.69-1.453-3.439-2.842-5.059-4.37-8.717-8.222-15.093-17.899-18.233-29.566-.865-3.211-1.442-6.474-1.627-9.792-.13-2.322-.318-4.665-.154-6.975.437-6.144 1.325-12.229 3.127-18.147l.099-.138c.175.233.427.439.516.702 1.759 5.18 3.505 10.364 5.242 15.551 5.458 16.3 10.909 32.604 16.376 48.9.107.318.384.579.583.866l-.87 2.969z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#46A037" d="M88.038 42.812c-1.384.206-2.768.403-4.149.616-3.131.485-6.263.968-9.392 1.465-2.622.417-5.242.852-7.862 1.281l-1.602.275-.012-1.045c-.053-.859-.144-1.717-.154-2.576-.069-5.478-.112-10.956-.18-16.434-.042-3.429-.105-6.857-.175-10.285-.043-2.13-.089-4.261-.185-6.388-.052-1.143-.236-2.28-.311-3.423-.042-.657.016-1.319.029-1.979.817 1.583 1.616 3.178 2.456 4.749 1.327 2.484 3.441 4.314 5.344 6.311 7.523 7.892 12.864 17.068 16.193 27.433z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#409433" d="M65.036 80.753c.081-.026.222-.034.235-.08.491-1.682 1.996-1.431 3.212-1.641 3.432-.594 6.875-1.13 10.313-1.687 3.326-.539 6.652-1.081 9.981-1.604.394-.062.805-.011 1.208-.012-.622 2.22-1.112 4.488-1.901 6.647-.896 2.449-1.98 4.839-3.131 7.182a49.142 49.142 0 01-6.353 9.763c-1.919 2.308-4.058 4.441-6.202 6.548-1.185 1.165-2.582 2.114-3.882 3.161l-.337-.23-1.214-1.038-1.256-2.753a41.402 41.402 0 01-1.394-9.838l.023-.561.171-2.426c.057-.828.133-1.655.168-2.485.129-2.982.241-5.964.359-8.946z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#4FAA41" d="M65.036 80.753c-.118 2.982-.23 5.964-.357 8.947-.035.83-.111 1.657-.168 2.485l-.765.289c-1.699-5.002-3.399-9.951-5.062-14.913-2.75-8.209-5.467-16.431-8.213-24.642a4498.887 4498.887 0 00-6.7-19.867c-.105-.31-.407-.552-.617-.826l4.896-9.002c.168.292.39.565.496.879a6167.476 6167.476 0 016.768 20.118c2.916 8.73 5.814 17.467 8.728 26.198.116.349.308.671.491 1.062l.67-.78-.167 10.052z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#4AA73C" d="M43.155 32.227c.21.274.511.516.617.826a4498.887 4498.887 0 016.7 19.867c2.746 8.211 5.463 16.433 8.213 24.642 1.662 4.961 3.362 9.911 5.062 14.913l.765-.289-.171 2.426-.155.559c-.266 2.656-.49 5.318-.814 7.968-.163 1.328-.509 2.632-.772 3.947-.198-.287-.476-.548-.583-.866-5.467-16.297-10.918-32.6-16.376-48.9a3888.972 3888.972 0 00-5.242-15.551c-.089-.263-.34-.469-.516-.702l3.272-8.84z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#57AE47" d="M65.202 70.702l-.67.78c-.183-.391-.375-.714-.491-1.062-2.913-8.731-5.812-17.468-8.728-26.198a6167.476 6167.476 0 00-6.768-20.118c-.105-.314-.327-.588-.496-.879l6.055-7.965c.191.255.463.482.562.769 1.681 4.921 3.347 9.848 5.003 14.778 1.547 4.604 3.071 9.215 4.636 13.813.105.308.47.526.714.786l.012 1.045c.058 8.082.115 16.167.171 24.251z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#60B24F" d="M65.021 45.404c-.244-.26-.609-.478-.714-.786-1.565-4.598-3.089-9.209-4.636-13.813-1.656-4.93-3.322-9.856-5.003-14.778-.099-.287-.371-.514-.562-.769 1.969-1.928 3.877-3.925 5.925-5.764 1.821-1.634 3.285-3.386 3.352-5.968.003-.107.059-.214.145-.514l.519 1.306c-.013.661-.072 1.322-.029 1.979.075 1.143.259 2.28.311 3.423.096 2.127.142 4.258.185 6.388.069 3.428.132 6.856.175 10.285.067 5.478.111 10.956.18 16.434.008.861.098 1.718.152 2.577z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#A9AA88" d="M62.598 107.085c.263-1.315.609-2.62.772-3.947.325-2.649.548-5.312.814-7.968l.066-.01.066.011a41.402 41.402 0 001.394 9.838c-.176.232-.425.439-.518.701-.727 2.05-1.412 4.116-2.143 6.166-.1.28-.378.498-.574.744l-.747-2.566.87-2.969z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#B6B598" d="M62.476 112.621c.196-.246.475-.464.574-.744.731-2.05 1.417-4.115 2.143-6.166.093-.262.341-.469.518-.701l1.255 2.754c-.248.352-.59.669-.728 1.061l-2.404 7.059c-.099.283-.437.483-.663.722l-.695-3.985z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#C2C1A7" d="M63.171 116.605c.227-.238.564-.439.663-.722l2.404-7.059c.137-.391.48-.709.728-1.061l1.215 1.037c-.587.58-.913 1.25-.717 2.097l-.369 1.208c-.168.207-.411.387-.494.624-.839 2.403-1.64 4.819-2.485 7.222-.107.305-.404.544-.614.812-.109-1.387-.22-2.771-.331-4.158z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#CECDB7" d="M63.503 120.763c.209-.269.506-.508.614-.812.845-2.402 1.646-4.818 2.485-7.222.083-.236.325-.417.494-.624l-.509 5.545c-.136.157-.333.294-.398.477-.575 1.614-1.117 3.24-1.694 4.854-.119.333-.347.627-.525.938-.158-.207-.441-.407-.454-.623-.051-.841-.016-1.688-.013-2.533z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#DBDAC7" d="M63.969 123.919c.178-.312.406-.606.525-.938.578-1.613 1.119-3.239 1.694-4.854.065-.183.263-.319.398-.477l.012 3.64-1.218 3.124-1.411-.495z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#EBE9DC" d="M65.38 124.415l1.218-3.124.251 3.696-1.469-.572z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#CECDB7" d="M67.464 110.898c-.196-.847.129-1.518.717-2.097l.337.23-1.054 1.867z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#4FAA41" d="M64.316 95.172l-.066-.011-.066.01.155-.559-.023.56z"/></svg>MongoDB</span>
+          <span><svg class="tech-icon" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sqlite-original-a" x1="-15.615" x2="-6.741" y1="-9.108" y2="-9.108" gradientTransform="rotate(90 -90.486 64.634) scale(9.2712)" gradientUnits="userSpaceOnUse"><stop stop-color="#95d7f4" offset="0"/><stop stop-color="#0f7fcc" offset=".92"/><stop stop-color="#0f7fcc" offset="1"/></linearGradient></defs><path d="M69.5 99.176c-.059-.73-.094-1.2-.094-1.2S67.2 83.087 64.57 78.642c-.414-.707.043-3.594 1.207-7.88.68 1.169 3.54 6.192 4.118 7.81.648 1.824.78 2.347.78 2.347s-1.57-8.082-4.144-12.797a162.286 162.286 0 012.004-6.265c.973 1.71 3.313 5.859 3.828 7.3.102.293.192.543.27.774.023-.137.05-.274.074-.414-.59-2.504-1.75-6.86-3.336-10.082 3.52-18.328 15.531-42.824 27.84-53.754H16.9c-5.387 0-9.789 4.406-9.789 9.789v88.57c0 5.383 4.406 9.789 9.79 9.789h52.897a118.657 118.657 0 01-.297-14.652" fill="#0b7fcc"/><path d="M65.777 70.762c.68 1.168 3.54 6.188 4.117 7.809.649 1.824.781 2.347.781 2.347s-1.57-8.082-4.144-12.797a164.535 164.535 0 012.004-6.27c.887 1.567 2.922 5.169 3.652 6.872l.082-.961c-.648-2.496-1.633-5.766-2.898-8.328 3.242-16.871 13.68-38.97 24.926-50.898H16.899a6.94 6.94 0 00-6.934 6.933v82.11c17.527-6.731 38.664-12.88 56.855-12.614-.672-2.605-1.441-4.96-2.25-6.324-.414-.707.043-3.597 1.207-7.879" fill="url(#sqlite-original-a)"/><path d="M115.95 2.781c-5.5-4.906-12.164-2.933-18.734 2.899a44.347 44.347 0 00-2.914 2.859c-11.25 11.926-21.684 34.023-24.926 50.895 1.262 2.563 2.25 5.832 2.894 8.328.168.64.32 1.242.442 1.754.285 1.207.437 1.996.437 1.996s-.101-.383-.515-1.582c-.078-.23-.168-.484-.27-.773-.043-.125-.105-.274-.172-.434-.734-1.703-2.765-5.305-3.656-6.867-.762 2.25-1.437 4.36-2.004 6.265 2.578 4.715 4.149 12.797 4.149 12.797s-.137-.523-.782-2.347c-.578-1.621-3.441-6.64-4.117-7.809-1.164 4.281-1.625 7.172-1.207 7.88.809 1.362 1.574 3.722 2.25 6.323 1.524 5.867 2.586 13.012 2.586 13.012s.031.469.094 1.2a118.653 118.653 0 00.297 14.651c.504 6.11 1.453 11.363 2.664 14.172l.828-.449c-1.781-5.535-2.504-12.793-2.188-21.156.48-12.793 3.422-28.215 8.856-44.289 9.191-24.27 21.938-43.738 33.602-53.035-10.633 9.602-25.023 40.684-29.332 52.195-4.82 12.891-8.238 24.984-10.301 36.574 3.55-10.863 15.047-15.53 15.047-15.53s5.637-6.958 12.227-16.888c-3.95.903-10.43 2.442-12.598 3.352-3.2 1.344-4.067 1.8-4.067 1.8s10.371-6.312 19.27-9.171c12.234-19.27 25.562-46.648 12.141-58.621" fill="#003956"/></svg>
+SQLite</span>
+          <span><svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#EA1B22" d="M55.387 66.469h8.333l-4.407-7.09-8.088 12.819h-3.681L57.382 56.8a2.324 2.324 0 011.931-.998c.765 0 1.478.363 1.892.972l9.876 15.424H67.4l-1.736-2.865h-8.438l-1.839-2.864zm38.235 2.864V55.958h-3.123v14.685c0 .402.156.791.454 1.089.298.298.7.466 1.141.466h14.244l1.841-2.865H93.622zm-51.677-2.397c3.033 0 5.496-2.449 5.496-5.482s-2.462-5.496-5.496-5.496H28.28v16.241h3.123V58.822h10.335c1.452 0 2.618 1.18 2.618 2.631s-1.167 2.631-2.618 2.631l-8.806-.013 9.324 8.127h4.538l-6.274-5.263h1.425zM9.059 72.198c-4.483 0-8.122-3.629-8.122-8.114s3.638-8.127 8.122-8.127h9.439c4.485 0 8.121 3.643 8.121 8.127s-3.636 8.114-8.121 8.114H9.059zm9.229-2.865a5.25 5.25 0 005.258-5.249 5.262 5.262 0 00-5.258-5.263H9.267a5.262 5.262 0 00-5.256 5.263 5.25 5.25 0 005.256 5.249h9.021zm59.314 2.865c-4.484 0-8.126-3.629-8.126-8.114s3.642-8.127 8.126-8.127h11.212l-1.829 2.864H77.81a5.267 5.267 0 00-5.264 5.263c0 2.903 2.36 5.249 5.264 5.249h11.263l-1.84 2.865h-9.631zm38.197-2.865a5.25 5.25 0 01-5.055-3.824h13.35l1.84-2.864h-15.19a5.266 5.266 0 015.055-3.824h9.163l1.854-2.864h-11.225c-4.484 0-8.126 3.643-8.126 8.127s3.642 8.114 8.126 8.114h9.631l1.841-2.865h-11.264"/></svg>Oracle DB</span>
+          <span><svg class="tech-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#ffa000" d="M17.474 103.276 33.229 2.462a2.91 2.91 0 0 1 5.44-.924l16.294 30.39 6.494-12.366a2.91 2.91 0 0 1 5.15 0l43.97 83.714H17.474Z"/><path fill="#f57c00" d="M71.903 64.005 54.955 31.913l-37.481 71.363Z"/><path fill="#ffca28" d="M110.577 103.276 98.51 28.604a2.913 2.913 0 0 0-1.984-2.286 2.906 2.906 0 0 0-2.94.714l-76.112 76.243 42.115 23.618a8.728 8.728 0 0 0 8.51 0l42.478-23.618Z"/><path fill="#fff" fill-opacity=".2" d="M98.51 28.604a2.913 2.913 0 0 0-1.984-2.286 2.906 2.906 0 0 0-2.94.713L78.479 42.178 66.6 19.562a2.91 2.91 0 0 0-5.15 0l-6.494 12.365L38.662 1.538A2.91 2.91 0 0 0 35.605.044a2.907 2.907 0 0 0-2.384 2.425L17.474 103.276h-.051l.05.058.415.204 75.676-75.764a2.91 2.91 0 0 1 4.932 1.571l11.965 74.003.116-.073L98.51 28.603Zm-80.898 74.534L33.228 3.182A2.91 2.91 0 0 1 35.613.756a2.911 2.911 0 0 1 3.057 1.495l16.292 30.39 6.495-12.366a2.91 2.91 0 0 1 5.15 0L78.245 42.41 17.61 103.138Z"/><path fill="#a52714" d="M68.099 126.18a8.728 8.728 0 0 1-8.51 0l-42.015-23.55-.102.647 42.115 23.61a8.728 8.728 0 0 0 8.51 0l42.48-23.61-.11-.67-42.37 23.575z" opacity=".2"/></svg>
+Firestore</span>
+          </div>
         </div>
-      </div>
-      <div class="skill-cat">
-        <h3>Core Concepts</h3>
-        <div class="skill-tags">
-          <span>Data Structures</span><span>Algorithms</span><span>DBMS</span><span>Machine Learning</span><span>REST APIs</span>
+
+        <div class="skill-cat">
+          <h3>Core Concepts</h3>
+          <div class="skill-tags">
+            <span>Data Structures</span><span>Algorithms</span><span>DBMS</span><span>Machine Learning</span><span>REST APIs</span>
+          </div>
         </div>
+
       </div>
+
+      <div class="deck-controls">
+        <button class="carousel-arrow" id="skillsPrev" aria-label="Previous skills card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="carousel-dots" id="skillsDots"></div>
+        <button class="carousel-arrow" id="skillsNext" aria-label="Next skills card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="deck-hint">Swipe or drag the card, or use the arrows to browse</div>
     </div>
   </div>
 </section>
@@ -530,58 +700,71 @@
     <div class="section-head reveal">
       <div class="eyebrow">04 · Projects</div>
       <h2>Selected work</h2>
-      <p>A mix of applied ML, mobile, and full-stack builds — each one shipped and pushed to GitHub.</p>
+      <p>A mix of applied ML, mobile, and full-stack builds — each one shipped and pushed to GitHub. Drag, swipe, or use the arrows to shuffle through.</p>
     </div>
-    <div class="project-grid reveal">
+    <div class="project-deck-wrap reveal">
+      <div class="project-deck" id="projectDeck">
 
-      <a class="project-card" href="https://github.com/Asil081205/Fraud-Detection_FINTECH" target="_blank" rel="noopener">
-        <div class="project-top">
-          <span class="project-index">01</span>
-          <span class="project-link" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
-          </span>
+        <div class="project-card" data-href="https://github.com/Asil081205/Fraud-Detection_FINTECH" role="link" tabindex="0">
+          <div class="project-top">
+            <span class="project-index">01</span>
+            <span class="project-link" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </span>
+          </div>
+          <h3>AI-Powered Fraud Detection System</h3>
+          <p class="project-desc">A machine learning model that flags fraudulent transactions with 92% accuracy, improved through careful feature engineering and iterative model evaluation.</p>
+          <div class="project-tags"><span>Python</span><span>Scikit-learn</span><span>Pandas</span><span>Machine Learning</span></div>
         </div>
-        <h3>AI-Powered Fraud Detection System</h3>
-        <p class="project-desc">A machine learning model that flags fraudulent transactions with 92% accuracy, improved through careful feature engineering and iterative model evaluation.</p>
-        <div class="project-tags"><span>Python</span><span>Scikit-learn</span><span>Pandas</span><span>Machine Learning</span></div>
-      </a>
 
-      <a class="project-card" href="https://github.com/Asil081205/AICityPulse" target="_blank" rel="noopener">
-        <div class="project-top">
-          <span class="project-index">02</span>
-          <span class="project-link" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
-          </span>
+        <div class="project-card" data-href="https://github.com/Asil081205/AICityPulse" role="link" tabindex="0">
+          <div class="project-top">
+            <span class="project-index">02</span>
+            <span class="project-link" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </span>
+          </div>
+          <h3>AI City Pulse</h3>
+          <p class="project-desc">A Flutter mobile app that reads traffic, pollution, and crowd-density data to generate a real-time City Health Score, built in support of SDG 11 goals.</p>
+          <div class="project-tags"><span>Flutter</span><span>Dart</span><span>Firebase</span><span>Smart Cities</span></div>
         </div>
-        <h3>AI City Pulse</h3>
-        <p class="project-desc">A Flutter mobile app that reads traffic, pollution, and crowd-density data to generate a real-time City Health Score, built in support of SDG 11 goals.</p>
-        <div class="project-tags"><span>Flutter</span><span>Dart</span><span>Firebase</span><span>Smart Cities</span></div>
-      </a>
 
-      <a class="project-card" href="https://github.com/Asil081205/WORK-FORGE-Project_Management_Tool" target="_blank" rel="noopener">
-        <div class="project-top">
-          <span class="project-index">03</span>
-          <span class="project-link" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
-          </span>
+        <div class="project-card" data-href="https://github.com/Asil081205/WORK-FORGE-Project_Management_Tool" role="link" tabindex="0">
+          <div class="project-top">
+            <span class="project-index">03</span>
+            <span class="project-link" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </span>
+          </div>
+          <h3>WORK-FORGE</h3>
+          <p class="project-desc">A MERN-stack project management system with task assignment, progress tracking, and deadline monitoring — lifted team collaboration efficiency by 30% in testing.</p>
+          <div class="project-tags"><span>MongoDB</span><span>Express.js</span><span>React.js</span><span>Node.js</span></div>
         </div>
-        <h3>WORK-FORGE</h3>
-        <p class="project-desc">A MERN-stack project management system with task assignment, progress tracking, and deadline monitoring — lifted team collaboration efficiency by 30% in testing.</p>
-        <div class="project-tags"><span>MongoDB</span><span>Express.js</span><span>React.js</span><span>Node.js</span></div>
-      </a>
 
-      <a class="project-card" href="https://github.com/Asil081205/AI_CAREER_NAVIGATOR" target="_blank" rel="noopener">
-        <div class="project-top">
-          <span class="project-index">04</span>
-          <span class="project-link" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
-          </span>
+        <div class="project-card" data-href="https://github.com/Asil081205/AI_CAREER_NAVIGATOR" role="link" tabindex="0">
+          <div class="project-top">
+            <span class="project-index">04</span>
+            <span class="project-link" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </span>
+          </div>
+          <h3>AI Career Navigator</h3>
+          <p class="project-desc">An AI-based career guidance platform that matches skills and interests to career paths, learning roadmaps, and trending roles. Hackathon finalist among 50–70 teams.</p>
+          <div class="project-tags"><span>JavaScript</span><span>Node.js</span><span>Career AI</span></div>
         </div>
-        <h3>AI Career Navigator</h3>
-        <p class="project-desc">An AI-based career guidance platform that matches skills and interests to career paths, learning roadmaps, and trending roles. Hackathon finalist among 50–70 teams.</p>
-        <div class="project-tags"><span>JavaScript</span><span>Node.js</span><span>Career AI</span></div>
-      </a>
 
+      </div>
+
+      <div class="deck-controls">
+        <button class="carousel-arrow" id="deckPrev" aria-label="Previous project">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="carousel-dots" id="deckDots"></div>
+        <button class="carousel-arrow" id="deckNext" aria-label="Next project">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="deck-hint">Swipe or drag the card, or click it to open on GitHub</div>
     </div>
   </div>
 </section>
@@ -589,21 +772,118 @@
 <section id="certs">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">05 · Certifications</div>
+      <div class="eyebrow">05 · Certifications &amp; Achievements</div>
       <h2>Keeping the fundamentals sharp</h2>
     </div>
+
+    <div class="cert-group-label reveal">Professional Certifications</div>
     <div class="cert-list reveal">
       <div class="cert-row">
-        <div class="cert-name">AI Infrastructure and Operations</div>
-        <div class="cert-issuer">NVIDIA</div>
+        <div class="cert-main">
+          <div class="cert-name">Power BI Workshop</div>
+          <div class="cert-issuer">Office Master</div>
+        </div>
+        <div class="cert-date">Aug 2025</div>
       </div>
       <div class="cert-row">
-        <div class="cert-name">Career Essentials in Data Analysis</div>
-        <div class="cert-issuer">Microsoft &amp; LinkedIn</div>
+        <div class="cert-main">
+          <div class="cert-name">GenAI in Data Analytics</div>
+          <div class="cert-issuer">Meta</div>
+        </div>
+        <div class="cert-date">Jul 2025</div>
       </div>
       <div class="cert-row">
-        <div class="cert-name">Artificial Intelligence for All</div>
-        <div class="cert-issuer">Infosys</div>
+        <div class="cert-main">
+          <div class="cert-name">GenAI for Fraud Detection Analytics</div>
+          <div class="cert-issuer">Edureka</div>
+        </div>
+        <div class="cert-date">Jul 2025</div>
+      </div>
+      <div class="cert-row">
+        <div class="cert-main">
+          <div class="cert-name">JavaScript for Beginners</div>
+          <div class="cert-issuer">Kaashiv InfoTech</div>
+        </div>
+        <div class="cert-date">Jul 2025</div>
+      </div>
+      <div class="cert-row">
+        <div class="cert-main">
+          <div class="cert-name">AI Infrastructure and Operations</div>
+          <div class="cert-issuer">NVIDIA</div>
+        </div>
+      </div>
+      <div class="cert-row">
+        <div class="cert-main">
+          <div class="cert-name">Career Essentials in Data Analytics</div>
+          <div class="cert-issuer">Microsoft &amp; LinkedIn</div>
+        </div>
+        <div class="cert-date">Nov 2024</div>
+      </div>
+      <div class="cert-row">
+        <div class="cert-main">
+          <div class="cert-name">Artificial Intelligence for All</div>
+          <div class="cert-issuer">Infosys</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cert-group-label cert-group-label--highlight reveal">Symposiums, Hackathons &amp; Achievements</div>
+    <div class="cert-list reveal">
+      <div class="cert-row">
+        <div class="cert-main">
+          <div class="cert-name">CODE-A-THON 2026 — 30-Hour National Level Offline Hackathon</div>
+          <div class="cert-issuer">New Prince Shri Bhavani College of Engineering &amp; Technology · CSI &amp; DigiSailor</div>
+        </div>
+        <div class="cert-date">Jan 2026</div>
+      </div>
+      <div class="cert-row">
+        <div class="cert-main">
+          <div class="cert-name">Certificate of Distinction — 2nd Place, 5th Semester (8.5 GPA)</div>
+          <div class="cert-issuer">Aalim Muhammed Salegh College of Engineering</div>
+        </div>
+        <div class="cert-date">Nov–Dec 2025</div>
+      </div>
+      <div class="cert-row">
+        <div class="cert-main">
+          <div class="cert-name">AETHERION'25 — Runner-Up, "Truth or Trap" (AMSPERE'25)</div>
+          <div class="cert-issuer">Dept. of AI &amp; Data Science, Aalim Muhammed Salegh College of Engineering</div>
+        </div>
+        <div class="cert-date">Sep 2025</div>
+      </div>
+      <div class="cert-row">
+        <div class="cert-main">
+          <div class="cert-name">ARCANE 2K25 — "The AI Gauntlet", National Level Technical Symposium</div>
+          <div class="cert-issuer">B.S. Abdur Rahman Crescent Institute of Science &amp; Technology</div>
+        </div>
+        <div class="cert-date">Oct 2025</div>
+      </div>
+      <div class="cert-row">
+        <div class="cert-main">
+          <div class="cert-name">PROXIM 25' — National Level Symposium, Technical &amp; Hackathon Events</div>
+          <div class="cert-issuer">SIMATS Engineering, Saveetha Institute of Medical &amp; Technical Sciences</div>
+        </div>
+        <div class="cert-date">Apr 2025</div>
+      </div>
+      <div class="cert-row">
+        <div class="cert-main">
+          <div class="cert-name">TechEvo'24 — CodeClash, Draftscape &amp; FlawFix Forum, National Level Hackathon</div>
+          <div class="cert-issuer">Aalim Muhammed Salegh College of Engineering</div>
+        </div>
+        <div class="cert-date">Apr–May 2024</div>
+      </div>
+      <div class="cert-row">
+        <div class="cert-main">
+          <div class="cert-name">ITITRC — 2nd Annual International Tamil IT Research Conference</div>
+          <div class="cert-issuer">World Tamil Chamber of Commerce, Chennai Trade Centre</div>
+        </div>
+        <div class="cert-date">Jun 2024</div>
+      </div>
+      <div class="cert-row">
+        <div class="cert-main">
+          <div class="cert-name">Workshop on "Internet of Things" — Certificate of Completion</div>
+          <div class="cert-issuer">Dept. of ECE, Aalim Muhammed Salegh College of Engineering</div>
+        </div>
+        <div class="cert-date">Oct 2024</div>
       </div>
     </div>
   </div>
@@ -655,12 +935,14 @@
     w = canvas.width = hero.offsetWidth;
     h = canvas.height = hero.offsetHeight;
     const count = Math.min(70, Math.floor((w*h)/22000));
+    const palette = ['rgba(0,230,118,0.85)', 'rgba(139,92,246,0.85)', 'rgba(34,211,238,0.85)'];
     nodes = Array.from({length: count}, ()=>({
       x: Math.random()*w,
       y: Math.random()*h,
       vx: (Math.random()-0.5)*0.25,
       vy: (Math.random()-0.5)*0.25,
-      r: Math.random()*1.6 + 0.8
+      r: Math.random()*1.6 + 0.8,
+      color: palette[Math.floor(Math.random()*palette.length)]
     }));
   }
 
@@ -693,7 +975,7 @@
         const dx = a.x-b.x, dy = a.y-b.y;
         const dist = Math.sqrt(dx*dx+dy*dy);
         if(dist < 150){
-          ctx.strokeStyle = `rgba(193,123,143,${0.14 * (1 - dist/150)})`;
+          ctx.strokeStyle = `rgba(139,92,246,${0.14 * (1 - dist/150)})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
@@ -705,7 +987,7 @@
     for(const n of nodes){
       ctx.beginPath();
       ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
-      ctx.fillStyle = 'rgba(216,184,119,0.85)';
+      ctx.fillStyle = n.color;
       ctx.fill();
     }
     if(!reduceMotion) requestAnimationFrame(step);
@@ -717,6 +999,178 @@
   else {
     step(); // draw one static frame
   }
+
+  // ---------- Reusable shuffling card-deck factory ----------
+  function createShuffleDeck({ deckId, dotsId, prevId, nextId, cardSelector, openOnClick }){
+    const deck = document.getElementById(deckId);
+    if(!deck) return;
+    const cards = Array.from(deck.querySelectorAll(cardSelector));
+    let order = cards.map((_, i)=> i);
+
+    const dotsHost = document.getElementById(dotsId);
+    cards.forEach((_, i)=>{
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i===0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Show card ' + (i+1));
+      dot.addEventListener('click', ()=> goTo(i));
+      dotsHost.appendChild(dot);
+    });
+    const dots = Array.from(dotsHost.children);
+
+    function render(){
+      order.forEach((cardIndex, pos)=>{
+        cards[cardIndex].dataset.pos = pos;
+      });
+      dots.forEach((d, i)=> d.classList.toggle('active', i === order[0]));
+    }
+    function next(){ order.push(order.shift()); render(); }
+    function prev(){ order.unshift(order.pop()); render(); }
+    function goTo(target){
+      let guard = 0;
+      while(order[0] !== target && guard < cards.length){ order.push(order.shift()); guard++; }
+      render();
+    }
+    render();
+
+    document.getElementById(nextId).addEventListener('click', next);
+    document.getElementById(prevId).addEventListener('click', prev);
+
+    // Drag / swipe support on the top card — pointer events (mouse/trackpad/most
+    // modern mobile browsers) PLUS a raw touch fallback so swiping is reliable
+    // even on browsers/webviews with flaky pointer-event support.
+    let startX = 0, startY = 0, startT = 0, dragging = false, moved = false, locked = null;
+    const SWIPE_DIST = 60;      // px needed to commit a swipe
+    const SWIPE_VELOCITY = 0.35; // px/ms — fast flicks commit even if short
+
+    function beginDrag(x, y){
+      const top = cards[order[0]];
+      dragging = true; moved = false; locked = null;
+      startX = x; startY = y; startT = Date.now();
+      top.style.transition = 'none';
+    }
+
+    function moveDrag(x, y, evt){
+      if(!dragging) return;
+      const top = cards[order[0]];
+      const dx = x - startX;
+      const dy = y - startY;
+
+      // Lock direction on first significant movement so a vertical page-scroll
+      // gesture doesn't get hijacked into a card swipe (and vice versa).
+      if(locked === null && (Math.abs(dx) > 6 || Math.abs(dy) > 6)){
+        locked = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
+      }
+      if(locked === 'y'){ return; } // let the page scroll, ignore the drag
+
+      if(Math.abs(dx) > 6) moved = true;
+      if(evt && evt.cancelable) evt.preventDefault(); // stop scroll once we're clearly swiping
+      top.style.transform = `translate(${dx}px, ${dy * 0.15}px) rotate(${dx / 22}deg)`;
+    }
+
+    function endDrag(x){
+      if(!dragging) return;
+      dragging = false;
+      const top = cards[order[0]];
+      const dx = (typeof x === 'number' ? x : startX) - startX;
+      const dt = Math.max(1, Date.now() - startT);
+      const velocity = Math.abs(dx) / dt;
+      top.style.transition = '';
+      top.style.transform = '';
+      if(locked === 'x' && (Math.abs(dx) > SWIPE_DIST || velocity > SWIPE_VELOCITY)){
+        if(dx < 0){ next(); } else { prev(); }
+      }
+      locked = null;
+    }
+
+    // Pointer events (mouse, pen, and most modern browsers' touch handling)
+    deck.addEventListener('pointerdown', (e)=>{
+      const top = cards[order[0]];
+      if(!top.contains(e.target)) return;
+      beginDrag(e.clientX, e.clientY);
+      try{ top.setPointerCapture(e.pointerId); }catch(err){}
+    });
+    deck.addEventListener('pointermove', (e)=> moveDrag(e.clientX, e.clientY, e));
+    deck.addEventListener('pointerup', (e)=> endDrag(e.clientX));
+    deck.addEventListener('pointercancel', ()=> endDrag());
+    deck.addEventListener('pointerleave', (e)=>{ if(dragging) endDrag(e.clientX); });
+
+    // Raw touch fallback for browsers/webviews where pointer events misbehave
+    deck.addEventListener('touchstart', (e)=>{
+      const top = cards[order[0]];
+      if(!top.contains(e.target)) return;
+      const t = e.touches[0];
+      beginDrag(t.clientX, t.clientY);
+    }, { passive: true });
+    deck.addEventListener('touchmove', (e)=>{
+      if(!dragging) return;
+      const t = e.touches[0];
+      moveDrag(t.clientX, t.clientY, e);
+    }, { passive: false });
+    deck.addEventListener('touchend', (e)=>{
+      const t = e.changedTouches[0];
+      endDrag(t ? t.clientX : undefined);
+    });
+    deck.addEventListener('touchcancel', ()=> endDrag());
+
+    // Click / keyboard on the front card: open its link, or just advance the deck
+    cards.forEach(card=>{
+      card.addEventListener('click', ()=>{
+        if(moved){ moved = false; return; }
+        if(card.dataset.pos !== '0') return;
+        if(openOnClick){
+          const href = card.dataset.href;
+          if(href) window.open(href, '_blank', 'noopener');
+        } else {
+          next();
+        }
+      });
+      if(openOnClick){
+        card.addEventListener('keydown', (e)=>{
+          if((e.key === 'Enter' || e.key === ' ') && card.dataset.pos === '0'){
+            e.preventDefault();
+            const href = card.dataset.href;
+            if(href) window.open(href, '_blank', 'noopener');
+          }
+        });
+      }
+    });
+  }
+
+  createShuffleDeck({
+    deckId: 'skillsDeck', dotsId: 'skillsDots', prevId: 'skillsPrev', nextId: 'skillsNext',
+    cardSelector: '.skill-cat', openOnClick: false
+  });
+
+  createShuffleDeck({
+    deckId: 'projectDeck', dotsId: 'deckDots', prevId: 'deckPrev', nextId: 'deckNext',
+    cardSelector: '.project-card', openOnClick: true
+  });
+
+  // ---------- Theme toggle (dark / light) ----------
+  (function(){
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    if(!toggle) return;
+
+    function applyTheme(theme){
+      if(theme === 'light'){
+        root.setAttribute('data-theme', 'light');
+        toggle.setAttribute('aria-pressed', 'true');
+      } else {
+        root.removeAttribute('data-theme');
+        toggle.setAttribute('aria-pressed', 'false');
+      }
+    }
+
+    // Default to the visitor's system preference, dark otherwise
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    applyTheme(prefersLight ? 'light' : 'dark');
+
+    toggle.addEventListener('click', ()=>{
+      const isLight = root.getAttribute('data-theme') === 'light';
+      applyTheme(isLight ? 'dark' : 'light');
+    });
+  })();
 </script>
 </body>
 </html>
