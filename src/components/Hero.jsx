@@ -6,7 +6,6 @@ import { useMotion } from '../context/MotionContext';
 
 export default function Hero({ onOpenPalette }) {
   const { motionEnabled } = useMotion();
-  const [useOriginalPhoto, setUseOriginalPhoto] = React.useState(false);
 
   // Animation variants
   const containerVariants = {
@@ -164,43 +163,39 @@ export default function Hero({ onOpenPalette }) {
           </motion.div>
         </div>
 
-        {/* Right Column: Cinematic Editorial Portrait */}
+        {/* Right Column: Cinematic Editorial Portrait with Crimson Studio Flash */}
         <motion.div
           variants={portraitVariants}
           className="lg:col-span-5 relative flex items-center justify-center lg:justify-end mt-8 lg:mt-0"
         >
-          {/* Crimson aura / backdrop depth glow */}
-          <div className="absolute w-[320px] md:w-[420px] h-[380px] md:h-[480px] rounded-full bg-accent/25 blur-[110px] pointer-events-none -z-10" />
+          {/* Ambient Crimson Flash & Rim Glow Behind Card */}
+          <div className="absolute w-[340px] md:w-[450px] h-[400px] md:h-[520px] rounded-full bg-accent/30 blur-[120px] pointer-events-none -z-10 animate-pulse-glow" />
           
           {/* Geometric Accent Frame Behind Portrait */}
-          <div className="absolute inset-x-4 md:inset-x-8 inset-y-4 rounded-3xl border border-white/10 bg-white/[0.02] pointer-events-none -z-10" />
+          <div className="absolute inset-x-3 md:inset-x-6 inset-y-3 rounded-3xl border border-accent/25 bg-accent/[0.03] pointer-events-none -z-10" />
 
-          {/* Portrait Container */}
-          <div className={`relative w-full max-w-[340px] md:max-w-[420px] lg:max-w-[460px] aspect-[4/5] flex items-end justify-center rounded-3xl overflow-hidden transition-all duration-300 ${
-            useOriginalPhoto
-              ? 'bg-[#141414] border border-white/15 p-2 shadow-2xl'
-              : 'border border-white/5'
-          }`}>
-            {/* Crystal Clear Editorial Portrait */}
-            {useOriginalPhoto ? (
+          {/* Portrait Container with Light Red / Crimson Studio Flash Backdrop */}
+          <div
+            className="relative w-full max-w-[340px] md:max-w-[420px] lg:max-w-[460px] aspect-[4/5] flex items-end justify-center rounded-3xl overflow-hidden border border-white/15 shadow-2xl"
+            style={{
+              background: 'radial-gradient(circle at 50% 36%, rgba(227, 43, 60, 0.45) 0%, rgba(180, 25, 40, 0.22) 40%, rgba(18, 12, 14, 0.95) 75%, #090909 100%)'
+            }}
+          >
+            {/* Studio Flash Light Spotlight Dish behind head */}
+            <div className="absolute top-[18%] left-1/2 -translate-x-1/2 w-56 h-56 rounded-full bg-gradient-to-b from-accent/50 via-accent/20 to-transparent blur-2xl pointer-events-none" />
+            <div className="absolute top-[26%] left-1/2 -translate-x-1/2 w-36 h-36 rounded-full bg-white/15 blur-xl pointer-events-none" />
+
+            {/* Crystal Clear Transparent Portrait Cutout */}
+            <div className="relative w-full h-full flex items-end justify-center z-10">
               <img
-                src={siteConfig.contact.portraitOriginal}
+                src={siteConfig.contact.portraitTransparent}
                 alt="Asil Jamesha T — Software Developer"
-                className="w-full h-full object-cover object-top rounded-2xl select-none"
+                className="w-full h-full object-contain object-bottom select-none filter contrast-[1.02] drop-shadow-[0_10px_25px_rgba(0,0,0,0.8)]"
                 loading="eager"
               />
-            ) : (
-              <div className="relative w-full h-full flex items-end justify-center">
-                <img
-                  src={siteConfig.contact.portraitTransparent}
-                  alt="Asil Jamesha T — Software Developer"
-                  className="w-full h-full object-contain object-bottom select-none"
-                  loading="eager"
-                />
-                {/* Minimal soft bottom blend */}
-                <div className="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-[#090909] to-transparent pointer-events-none" />
-              </div>
-            )}
+              {/* Soft bottom anchor gradient */}
+              <div className="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-[#090909] to-transparent pointer-events-none" />
+            </div>
 
             {/* Subtle Editorial Monogram Tag */}
             <div className="absolute bottom-4 left-4 z-20 font-mono text-[11px] text-[#A09C9A] bg-[#0c0c0c]/90 border border-white/10 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-2 shadow-lg">
@@ -208,17 +203,8 @@ export default function Hero({ onOpenPalette }) {
               <span>ASIL JAMESHA T · CHENNAI</span>
             </div>
 
-            {/* Top Controls: View Mode Toggle & View CV */}
-            <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => setUseOriginalPhoto(!useOriginalPhoto)}
-                className="font-mono text-[10px] tracking-wider text-[#F2EFEB] hover:text-white bg-[#0c0c0c]/90 hover:bg-[#1a1a1a] border border-white/15 hover:border-accent backdrop-blur-md px-2.5 py-1.5 rounded-full transition-colors shadow-lg"
-                title="Toggle Portrait View Mode"
-              >
-                {useOriginalPhoto ? 'STUDIO HD' : 'CUTOUT'}
-              </button>
-
+            {/* Top Right: View CV Quick Action */}
+            <div className="absolute top-4 right-4 z-20">
               <a
                 href={siteConfig.contact.resumePdf}
                 download="Asil-Jamesha-Resume.pdf"
