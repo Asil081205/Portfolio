@@ -3,6 +3,8 @@
  * Verified directly from T_Asil_Jamesha_Resume.pdf
  */
 
+const BASE = import.meta.env.BASE_URL || '/';
+
 export const siteConfig = {
   personal: {
     fullName: "ASIL JAMESHA T",
@@ -25,9 +27,9 @@ export const siteConfig = {
     github: "https://github.com/Asil081205",
     linkedin: "https://www.linkedin.com/in/asil-jamesha",
     portfolioRepo: "https://github.com/Asil081205/Portfolio",
-    resumePdf: "/assets/Asil-Jamesha-Resume.pdf",
-    portraitOriginal: "/assets/asil-portrait.jpeg",
-    portraitTransparent: "/assets/asil-portrait-transparent.png"
+    resumePdf: `${BASE}assets/Asil-Jamesha-Resume.pdf`,
+    portraitOriginal: `${BASE}assets/asil-portrait.jpeg`,
+    portraitTransparent: `${BASE}assets/asil-portrait-transparent.png`
   },
 
   education: [

@@ -9,15 +9,15 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [filter, setFilter] = useState('ALL');
 
-  const filterCategories = ['ALL', 'FLAGSHIP', 'AI & SYSTEMS', 'CLIENT & STARTUP'];
+  const filterCategories = ['ALL', 'FLAGSHIP', 'MERN & FULL STACK', 'AI & ML'];
 
   const filteredProjects = projects.filter((p) => {
     if (filter === 'FLAGSHIP') return p.isFlagship;
-    if (filter === 'AI & SYSTEMS') {
-      return p.category.includes('AI') || p.category.includes('MACHINE LEARNING') || p.category.includes('COMPUTER VISION');
+    if (filter === 'MERN & FULL STACK') {
+      return p.category.includes('MERN') || p.category.includes('FULL STACK') || p.id === 'work-forge' || p.id === 'c2x' || p.id === 'qyzen';
     }
-    if (filter === 'CLIENT & STARTUP') {
-      return p.category.includes('STARTUP') || p.id === 'qyzen';
+    if (filter === 'AI & ML') {
+      return p.category.includes('AI') || p.category.includes('MACHINE LEARNING') || p.category.includes('SDG');
     }
     return true;
   });
