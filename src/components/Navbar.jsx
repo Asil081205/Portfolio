@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sparkles, Zap, ZapOff, ArrowUpRight, Search, Download } from 'lucide-react';
+import { Menu, X, Sparkles, ArrowUpRight, Search, Download } from 'lucide-react';
 import { siteConfig } from '../config/site';
 import { useMotion } from '../context/MotionContext';
 
@@ -8,7 +8,7 @@ export default function Navbar({ onOpenPalette }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
-  const { motionEnabled, toggleMotion } = useMotion();
+  const { motionEnabled } = useMotion();
 
   const navLinks = [
     { label: 'WORK', href: '#work' },
@@ -114,26 +114,6 @@ export default function Navbar({ onOpenPalette }) {
             </button>
           )}
 
-          {/* Motion Toggle Button */}
-          <button
-            onClick={toggleMotion}
-            aria-label={motionEnabled ? 'Disable non-essential animations' : 'Enable animations'}
-            title={`Motion: ${motionEnabled ? 'ON' : 'OFF'}`}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:border-accent/40 text-[11px] font-mono transition-all text-[#A09C9A] hover:text-[#F2EFEB]"
-          >
-            {motionEnabled ? (
-              <>
-                <Zap className="w-3.5 h-3.5 text-accent" />
-                <span>MOTION ON</span>
-              </>
-            ) : (
-              <>
-                <ZapOff className="w-3.5 h-3.5 text-secondary-text" />
-                <span>MOTION OFF</span>
-              </>
-            )}
-          </button>
-
           {/* Download Resume Link */}
           <a
             href={siteConfig.contact.resumePdf}
@@ -158,7 +138,7 @@ export default function Navbar({ onOpenPalette }) {
           </a>
         </nav>
 
-        {/* Mobile Menu & Motion Toggle Controls */}
+        {/* Mobile Menu Controls */}
         <div className="flex items-center gap-3 md:hidden">
           {onOpenPalette && (
             <button
@@ -170,14 +150,6 @@ export default function Navbar({ onOpenPalette }) {
             </button>
           )}
 
-          <button
-            onClick={toggleMotion}
-            aria-label="Toggle motion effects"
-            className="p-2 rounded-full border border-white/10 bg-white/[0.05] text-[#A09C9A]"
-          >
-            {motionEnabled ? <Zap className="w-4 h-4 text-accent" /> : <ZapOff className="w-4 h-4" />}
-          </button>
-          
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 text-[#F2EFEB] hover:text-accent transition-colors"
@@ -225,17 +197,8 @@ export default function Navbar({ onOpenPalette }) {
                 <span className="font-mono text-xs">CV</span>
               </a>
 
-              <div className="pt-4 flex flex-col gap-3 font-mono text-xs text-[#A09C9A]">
-                <div className="flex items-center justify-between">
-                  <span>ANIMATION STATE</span>
-                  <button
-                    onClick={toggleMotion}
-                    className="px-3 py-1 rounded border border-white/20 text-[#F2EFEB]"
-                  >
-                    {motionEnabled ? 'ENABLED' : 'REDUCED'}
-                  </button>
-                </div>
-                <div className="text-[11px] text-[#A09C9A]/70 pt-2">
+              <div className="pt-4 flex flex-col gap-2 font-mono text-xs text-[#A09C9A]">
+                <div className="text-[11px] text-[#A09C9A]/70">
                   {siteConfig.personal.location}
                 </div>
               </div>

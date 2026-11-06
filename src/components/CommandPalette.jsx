@@ -7,7 +7,7 @@ import { useMotion } from '../context/MotionContext';
 export default function CommandPalette({ isOpen, onClose }) {
   const [query, setQuery] = useState('');
   const [copied, setCopied] = useState(false);
-  const { motionEnabled, toggleMotion } = useMotion();
+  const { motionEnabled } = useMotion();
 
   const commands = [
     {
@@ -90,14 +90,6 @@ export default function CommandPalette({ isOpen, onClose }) {
         navigator.clipboard.writeText(siteConfig.contact.email);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
-      },
-    },
-    {
-      id: 'toggle-motion',
-      title: `Toggle Animation (${motionEnabled ? 'Enabled' : 'Reduced'})`,
-      category: 'SETTINGS',
-      action: () => {
-        toggleMotion();
       },
     },
     {
