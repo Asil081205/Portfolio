@@ -1,51 +1,91 @@
 /**
  * ASIL JAMESHA — SITE CONFIGURATION
- * 
- * Edit your personal contact details, links, and preferences here.
- * Notice: Do not add fake employment history, phone numbers, or unverified claims.
+ * Verified directly from T_Asil_Jamesha_Resume.pdf
  */
 
 export const siteConfig = {
   personal: {
     fullName: "ASIL JAMESHA T",
     displayName: "ASIL JAMESHA",
-    role: "Full Stack Developer",
-    specialization: "MERN Stack Development · AI-Integrated Applications",
-    shortBio: "I build digital experiences, collaborative tools, and AI-powered applications that turn ideas into functional products.",
-    headline: "ENGINEERING IDEAS INTO EXPERIENCES.",
-    subHeadline: "FULL STACK DEVELOPMENT / AI INTEGRATION / CREATIVE ENGINEERING",
-    location: "Chennai, Tamil Nadu, India",
-    availability: "Available for Projects & Engineering Roles",
+    role: "Software Developer | AI & Machine Learning",
+    badge: "SOFTWARE DEVELOPER · AI & MACHINE LEARNING",
+    specialization: "FULL STACK DEVELOPMENT / AI INTEGRATION / MACHINE LEARNING",
+    shortBio: "Building scalable applications, intelligent systems, and meaningful digital experiences.",
+    fullBio: "Full Stack Developer with hands-on experience building scalable web applications using React.js, Node.js, Express.js, MongoDB, and Flutter. Proficient in REST API development, authentication, database integration, and applied Machine Learning, with hands-on experience building and deploying production-oriented MERN applications and cross-platform solutions.",
+    headline: "ENGINEERING SCALABLE SYSTEMS INTO IMPACTFUL PRODUCTS.",
+    subHeadline: "MERN STACK / APPLIED MACHINE LEARNING / FLUTTER / DISTRIBUTED ARCHITECTURE",
+    location: "Chennai, India",
+    availability: "Available for Software Engineering & AI Roles",
+    languages: ["English", "Tamil"]
   },
   
   contact: {
-    // EDIT HERE: Set your primary email address
-    email: "asiljamesha.dev@gmail.com", 
-    
-    // EDIT HERE: Set your verified LinkedIn profile URL
-    linkedin: "https://www.linkedin.com/in/asil-jamesha",
-    
-    // Verified GitHub profile
+    email: "t.asiljamesha@gmail.com",
+    phone: "+91 6381274862",
     github: "https://github.com/Asil081205",
-    
-    // Portfolio source repository
+    linkedin: "https://www.linkedin.com/in/asil-jamesha",
     portfolioRepo: "https://github.com/Asil081205/Portfolio",
+    resumePdf: "/assets/Asil-Jamesha-Resume.pdf",
+    portraitOriginal: "/assets/asil-portrait.jpeg",
+    portraitTransparent: "/assets/asil-portrait-transparent.png"
   },
 
-  education: {
-    degree: "B.Tech in Artificial Intelligence and Data Science",
-    institution: "Aalim Muhammed Salegh College of Engineering",
-    university: "Anna University",
-    period: "2023 — 2027",
-    location: "Chennai, Tamil Nadu",
-    // Note: CGPA 8.24 (up to 3rd semester) is kept in records; hidden from public display until confirmed updated.
-    showCgpa: false,
-    cgpa: "8.24"
-  },
+  education: [
+    {
+      degree: "B.Tech in Artificial Intelligence & Data Science",
+      institution: "Aalim Muhammed Salegh College of Engineering, Avadi",
+      university: "Anna University",
+      period: "2023 – 2027",
+      score: "CGPA: 8.34 up to 6th Semester",
+      isPrimary: true
+    },
+    {
+      degree: "Higher Secondary Certificate (HSC)",
+      institution: "Kingston Matriculation Higher Secondary School, Vandavasi",
+      university: "Tamil Nadu State Board",
+      period: "2023",
+      score: "78.83%",
+      isPrimary: false
+    }
+  ],
+
+  certifications: [
+    {
+      title: "AI Infrastructure and Operations",
+      issuer: "NVIDIA",
+      category: "AI & High-Performance Computing",
+      badge: "NVIDIA Certified"
+    },
+    {
+      title: "Career Essentials in Data Analysis",
+      issuer: "Microsoft & LinkedIn",
+      category: "Analytics & Applied Data",
+      badge: "Microsoft Certified"
+    },
+    {
+      title: "Artificial Intelligence for All",
+      issuer: "Infosys",
+      category: "AI Fundamentals",
+      badge: "Infosys Springboard"
+    }
+  ],
+
+  achievements: [
+    {
+      title: "Hackathon Finalist — AI Career Navigator",
+      organization: "National Level Hackathon",
+      detail: "Recognized as a Top Finalist among 50–70 competing teams for automated resume parsing and intelligent career matching."
+    },
+    {
+      title: "30% Collaboration Efficiency Boost",
+      organization: "Adro IT Technologies (Work Forge)",
+      detail: "Engineered full CRUD and role-based tracking platform improving cross-team development efficiency by 30%."
+    }
+  ],
 
   meta: {
-    title: "ASIL JAMESHA — Full Stack Developer & Creative Engineer",
-    description: "Cinematic portfolio of Asil Jamesha — Full Stack Developer specializing in MERN Stack, AI-Integrated Applications, and collaborative developer tools.",
-    keywords: ["Asil Jamesha", "Full Stack Developer", "MERN Stack", "AI Integration", "C2X", "Chennai", "Creative Developer"],
+    title: "ASIL JAMESHA — Software Developer | AI & Machine Learning",
+    description: "Portfolio of Asil Jamesha T — Full Stack Developer specializing in MERN Stack, Flutter, and applied Machine Learning. Based in Chennai, India.",
+    keywords: ["Asil Jamesha", "Software Developer", "MERN Stack", "Machine Learning", "Work Forge", "C2X", "Chennai", "AI Engineer"],
   }
 };

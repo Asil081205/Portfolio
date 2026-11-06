@@ -85,10 +85,10 @@ export default function About() {
                 CURRENT STUDIES · 2023–2027
               </div>
               <div className="text-sm font-bold text-white mt-0.5">
-                {siteConfig.education.degree}
+                {siteConfig.education[0].degree}
               </div>
               <div className="text-xs text-[#A09C9A] mt-1">
-                {siteConfig.education.institution} · {siteConfig.education.university}
+                {siteConfig.education[0].institution} · {siteConfig.education[0].university}
               </div>
             </div>
           </div>
@@ -97,3 +97,4 @@ export default function About() {
     </section>
   );
 }
+

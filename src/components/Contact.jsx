@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { siteConfig } from '../config/site';
-import { Mail, Linkedin, Github, ArrowUpRight, Copy, Check, Send, Sparkles } from 'lucide-react';
+import { Mail, Linkedin, Github, ArrowUpRight, Copy, Check, Send, Sparkles, Download, Phone } from 'lucide-react';
 import { useMotion } from '../context/MotionContext';
 
 export default function Contact() {
@@ -68,6 +68,17 @@ export default function Contact() {
           </button>
 
           <a
+            href={siteConfig.contact.resumePdf}
+            download="Asil-Jamesha-Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-4 rounded-full bg-white text-black hover:bg-accent hover:text-white font-mono text-xs font-bold tracking-wider flex items-center gap-2 transition-all transform hover:-translate-y-1 shadow-lg shadow-white/10"
+          >
+            <Download className="w-4 h-4 text-accent" />
+            <span>DOWNLOAD RESUME</span>
+          </a>
+
+          <a
             href={siteConfig.contact.linkedin}
             target="_blank"
             rel="noopener noreferrer"
@@ -90,14 +101,30 @@ export default function Contact() {
           </a>
         </div>
 
-        {/* Email Address Display Pill */}
-        <div className="pt-6 font-mono text-xs text-[#A09C9A]">
-          DIRECT INBOX:{' '}
-          <span className="text-white select-all underline decoration-accent decoration-2 underline-offset-4">
-            {siteConfig.contact.email}
-          </span>
+        {/* Direct Contact Meta Details */}
+        <div className="pt-6 font-mono text-xs text-[#A09C9A] flex flex-wrap items-center justify-center gap-6">
+          <div>
+            EMAIL:{' '}
+            <a
+              href={`mailto:${siteConfig.contact.email}`}
+              className="text-white hover:text-accent select-all underline decoration-accent decoration-2 underline-offset-4"
+            >
+              {siteConfig.contact.email}
+            </a>
+          </div>
+          <span className="text-white/20 hidden sm:inline">|</span>
+          <div>
+            PHONE:{' '}
+            <a
+              href={`tel:${siteConfig.contact.phone}`}
+              className="text-white hover:text-accent font-semibold"
+            >
+              {siteConfig.contact.phone}
+            </a>
+          </div>
         </div>
       </div>
     </section>
   );
 }
+

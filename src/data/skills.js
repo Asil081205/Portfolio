@@ -1,91 +1,89 @@
 /**
- * TECHNICAL SKILLS & DOMAIN PROFICIENCY
- * Clean, organized categorization without cheesy percentage bars.
- * Reflects verified exposure, coursework, and hands-on projects.
+ * TECHNICAL SKILLS & PROFICIENCY
+ * Directly aligned with T_Asil_Jamesha_Resume.pdf
  */
 
 export const skillCategories = [
   {
     id: "frontend",
-    title: "Frontend Engineering",
-    short: "UI & CLIENT",
-    description: "Building responsive, modern, and accessible user interfaces with component-driven architecture.",
+    title: "Frontend & Cross-Platform",
+    short: "CLIENT & MOBILE",
+    description: "Building responsive, modern, and high-performance user interfaces across web and mobile.",
     skills: [
-      { name: "React", level: "Primary", tag: "MERN Core" },
+      { name: "React.js", level: "Primary", tag: "MERN Stack" },
+      { name: "Flutter", level: "Core", tag: "Cross-Platform" },
+      { name: "Dart", level: "Core", tag: "Mobile Core" },
       { name: "JavaScript (ES6+)", level: "Primary", tag: "Language" },
-      { name: "Tailwind CSS", level: "Primary", tag: "Styling" },
-      { name: "HTML5 / Semantic Web", level: "Core", tag: "Markup" },
-      { name: "CSS3 / Modern Layouts", level: "Core", tag: "Design" },
-      { name: "TypeScript", level: "Working", tag: "Typed UI" }
+      { name: "Tailwind CSS", level: "Primary", tag: "Modern Styling" },
+      { name: "HTML5 & CSS3", level: "Core", tag: "Semantic Web" }
     ]
   },
   {
     id: "backend",
-    title: "Backend & APIs",
-    short: "SERVER & SERVICES",
-    description: "Architecting modular server-side applications, RESTful endpoints, and real-time sockets.",
+    title: "Backend & Systems Architecture",
+    short: "SERVER & APIS",
+    description: "Architecting modular server-side applications, RESTful endpoints, and authentication workflows.",
     skills: [
-      { name: "Node.js", level: "Primary", tag: "Runtime" },
+      { name: "Node.js", level: "Primary", tag: "Runtime Core" },
       { name: "Express.js", level: "Primary", tag: "Framework" },
-      { name: "REST APIs", level: "Core", tag: "Architecture" },
-      { name: "Socket.IO", level: "Working", tag: "Real-time" },
-      { name: "JWT Authentication", level: "Core", tag: "Security" }
+      { name: "REST APIs", level: "Primary", tag: "Architecture" },
+      { name: "Role-Based Access (RBAC)", level: "Core", tag: "Security" },
+      { name: "JWT Authentication", level: "Core", tag: "Auth Tokens" },
+      { name: "Socket.IO", level: "Working", tag: "Real-time Sync" }
     ]
   },
   {
     id: "database",
-    title: "Databases & Storage",
-    short: "DATA PERSISTENCE",
-    description: "Relational and document storage design, schema modeling, and cloud-hosted data engines.",
+    title: "Databases & Cloud Storage",
+    short: "DATA STORAGE",
+    description: "Document-oriented databases, relational persistence, and cloud telemetry storage.",
     skills: [
-      { name: "PostgreSQL", level: "Core", tag: "Relational / Neon" },
-      { name: "MongoDB", level: "Core", tag: "NoSQL / MERN" },
-      { name: "SQL Querying", level: "Core", tag: "Relational" }
+      { name: "MongoDB", level: "Primary", tag: "MERN Core / NoSQL" },
+      { name: "PostgreSQL / Neon", level: "Core", tag: "Relational DB" },
+      { name: "Firebase Firestore", level: "Core", tag: "Cloud Real-time" },
+      { name: "SQL Querying", level: "Core", tag: "Relational Schemas" }
     ]
   },
   {
     id: "ai-data",
-    title: "AI, ML & Computer Vision",
-    short: "INTELLIGENCE",
-    description: "Applied machine learning, text parsing, computer vision pipelines, and intelligent API integration.",
+    title: "AI, Machine Learning & Analytics",
+    short: "APPLIED AI & DATA",
+    description: "Machine learning algorithms, exploratory data analysis, NLP parsing, and predictive modeling.",
     skills: [
-      { name: "Machine Learning", level: "Core", tag: "Scikit-learn" },
-      { name: "Computer Vision", level: "Working", tag: "OpenCV" },
-      { name: "AI Integration", level: "Primary", tag: "LLMs & APIs" },
-      { name: "Data Analysis", level: "Core", tag: "Pandas & NumPy" },
-      { name: "Python", level: "Primary", tag: "Language" }
+      { name: "Machine Learning", level: "Primary", tag: "Scikit-learn" },
+      { name: "Exploratory Data Analysis (EDA)", level: "Primary", tag: "Alt Sense Intern" },
+      { name: "Data Preprocessing", level: "Primary", tag: "Data Pipelines" },
+      { name: "Pandas & NumPy", level: "Core", tag: "Data Science" },
+      { name: "NLP & Resume Parsing", level: "Core", tag: "Career Navigator" },
+      { name: "Python", level: "Primary", tag: "Core AI Language" }
     ]
   },
   {
     id: "languages",
     title: "Programming Languages",
-    short: "FOUNDATIONAL",
-    description: "Multi-paradigm programming foundations developed through academic study and engineering projects.",
+    short: "CORE LANGUAGES",
+    description: "Multi-paradigm programming foundations developed through projects and coursework.",
     skills: [
       { name: "JavaScript", level: "Primary", tag: "Full Stack" },
-      { name: "Python", level: "Primary", tag: "AI / Systems" },
-      { name: "C", level: "Foundational", tag: "Academic" },
+      { name: "Python", level: "Primary", tag: "AI / Data Science" },
+      { name: "Dart", level: "Core", tag: "Flutter Mobile" },
+      { name: "C", level: "Foundational", tag: "Systems" },
       { name: "C++", level: "Foundational", tag: "Algorithms" },
-      { name: "Java", level: "Foundational", tag: "OOP" },
-      { name: "PHP", level: "Exposure", tag: "Web Scripting" },
-      { name: "R", level: "Exposure", tag: "Statistics" }
+      { name: "Java", level: "Foundational", tag: "OOP Principles" }
     ]
   },
   {
     id: "tools-devops",
-    title: "Tools, Cloud & Infrastructure",
-    short: "DEVOPS & WORKFLOW",
-    description: "Modern version control, cloud deployment exposure, containerization, and analytics tools.",
+    title: "Cloud & Developer Tools",
+    short: "DEVOPS & TOOLS",
+    description: "Version control, container-based application management, and cloud deployment concepts.",
     skills: [
-      { name: "Git", level: "Core", tag: "VCS" },
-      { name: "GitHub", level: "Core", tag: "Collaboration" },
-      { name: "Docker", level: "Exposure", tag: "Containers" },
-      { name: "AWS", level: "Exposure", tag: "Cloud" },
-      { name: "Azure", level: "Exposure", tag: "Cloud" },
-      { name: "Terraform", level: "Exposure", tag: "IaC" },
-      { name: "Power BI", level: "Exposure", tag: "BI" },
-      { name: "Tableau", level: "Exposure", tag: "Analytics" },
-      { name: "Excel", level: "Core", tag: "Spreadsheets" }
+      { name: "Git", level: "Core", tag: "Version Control" },
+      { name: "GitHub", level: "Core", tag: "Code Collaboration" },
+      { name: "Docker", level: "Core", tag: "Containers / HTSS" },
+      { name: "Cloud Deployment Concepts", level: "Core", tag: "Cloud Infrastructure" },
+      { name: "Postman", level: "Core", tag: "API Testing" },
+      { name: "VS Code", level: "Primary", tag: "IDE Environment" }
     ]
   }
 ];

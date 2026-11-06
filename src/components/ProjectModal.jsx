@@ -162,3 +162,4 @@ export default function ProjectModal({ project, isOpen, onClose }) {
     </AnimatePresence>
   );
 }
+

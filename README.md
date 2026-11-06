@@ -112,3 +112,4 @@ vercel
 5. Build Command: `npm run build`
 6. Output Directory: `dist`
 7. Click **Deploy**. Your portfolio will be live on a global CDN with free SSL!
+

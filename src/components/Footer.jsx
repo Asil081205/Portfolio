@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, Github, Linkedin, Mail, Heart } from 'lucide-react';
+import { ArrowUp, Github, Linkedin, Mail, Heart, Download, Phone } from 'lucide-react';
 import { siteConfig } from '../config/site';
 import { useMotion } from '../context/MotionContext';
 
@@ -59,6 +59,23 @@ export default function Footer() {
               <Mail className="w-4 h-4" />
               <span>EMAIL</span>
             </a>
+            <a
+              href={`tel:${siteConfig.contact.phone}`}
+              className="text-[#F2EFEB] hover:text-accent transition-colors flex items-center gap-1.5"
+            >
+              <Phone className="w-4 h-4 text-accent" />
+              <span>{siteConfig.contact.phone}</span>
+            </a>
+            <a
+              href={siteConfig.contact.resumePdf}
+              download="Asil-Jamesha-Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-accent transition-colors flex items-center gap-1.5 font-bold"
+            >
+              <Download className="w-4 h-4 text-accent" />
+              <span>RESUME (PDF)</span>
+            </a>
           </div>
 
           {/* Back to Top */}
@@ -85,3 +102,4 @@ export default function Footer() {
     </footer>
   );
 }
+

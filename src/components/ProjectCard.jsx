@@ -338,3 +338,4 @@ export default function ProjectCard({ project, index, onSelect }) {
     </motion.article>
   );
 }
+

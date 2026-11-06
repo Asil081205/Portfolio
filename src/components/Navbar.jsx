@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sparkles, Zap, ZapOff, ArrowUpRight } from 'lucide-react';
+import { Menu, X, Sparkles, Zap, ZapOff, ArrowUpRight, Search, Download } from 'lucide-react';
 import { siteConfig } from '../config/site';
 import { useMotion } from '../context/MotionContext';
 
-export default function Navbar() {
+export default function Navbar({ onOpenPalette }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -98,6 +98,22 @@ export default function Navbar() {
             );
           })}
 
+          {/* Quick Search / Command Palette Trigger */}
+          {onOpenPalette && (
+            <button
+              onClick={onOpenPalette}
+              aria-label="Open Command Palette"
+              title="Quick Search (Ctrl+K / ⌘K)"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:border-accent/40 text-[11px] font-mono transition-all text-[#A09C9A] hover:text-[#F2EFEB]"
+            >
+              <Search className="w-3.5 h-3.5 text-accent" />
+              <span>SEARCH</span>
+              <kbd className="hidden lg:inline-block px-1.5 py-0.2 rounded bg-white/10 text-[9px] text-white/60">
+                ⌘K
+              </kbd>
+            </button>
+          )}
+
           {/* Motion Toggle Button */}
           <button
             onClick={toggleMotion}
@@ -118,6 +134,19 @@ export default function Navbar() {
             )}
           </button>
 
+          {/* Download Resume Link */}
+          <a
+            href={siteConfig.contact.resumePdf}
+            download="Asil-Jamesha-Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:border-white/30 text-[11px] font-mono transition-all text-[#F2EFEB]"
+            title="Download Verified Resume PDF"
+          >
+            <Download className="w-3.5 h-3.5 text-accent" />
+            <span>RESUME</span>
+          </a>
+
           {/* Quick CTA */}
           <a
             href="#contact"
@@ -131,6 +160,16 @@ export default function Navbar() {
 
         {/* Mobile Menu & Motion Toggle Controls */}
         <div className="flex items-center gap-3 md:hidden">
+          {onOpenPalette && (
+            <button
+              onClick={onOpenPalette}
+              aria-label="Search"
+              className="p-2 rounded-full border border-white/10 bg-white/[0.05] text-[#A09C9A]"
+            >
+              <Search className="w-4 h-4 text-accent" />
+            </button>
+          )}
+
           <button
             onClick={toggleMotion}
             aria-label="Toggle motion effects"
@@ -172,6 +211,20 @@ export default function Navbar() {
                 </a>
               ))}
               
+              <a
+                href={siteConfig.contact.resumePdf}
+                download="Asil-Jamesha-Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between text-base font-mono tracking-wider text-white bg-accent/15 border border-accent/40 rounded-xl px-4 py-3 hover:bg-accent hover:text-white transition-colors"
+              >
+                <div className="flex items-center gap-2">
+                  <Download className="w-4 h-4 text-accent" />
+                  <span>DOWNLOAD RESUME (PDF)</span>
+                </div>
+                <span className="font-mono text-xs">CV</span>
+              </a>
+
               <div className="pt-4 flex flex-col gap-3 font-mono text-xs text-[#A09C9A]">
                 <div className="flex items-center justify-between">
                   <span>ANIMATION STATE</span>
@@ -193,3 +246,4 @@ export default function Navbar() {
     </header>
   );
 }
+

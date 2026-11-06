@@ -1,64 +1,50 @@
 /**
- * DEVELOPMENT JOURNEY & TECHNICAL EXPERIENCES
- * Factual development timeline emphasizing real milestones, verified client work, and cloud/DevOps exposure.
- * Strictly adheres to guidelines: No invented company names, false dates, or inflated titles.
+ * VERIFIED PROFESSIONAL EXPERIENCE & INTERNSHIPS
+ * Extracted directly from T_Asil_Jamesha_Resume.pdf
  */
 
-export const developmentJourney = [
+export const internships = [
   {
-    year: "2024 — PRESENT",
-    phase: "04",
-    title: "Flagship Product & Advanced Systems Engineering",
-    focus: "C2X & Full Stack Architecture",
-    category: "PRODUCT DEVELOPMENT",
-    description: "Architected and built C2X, a unified collaborative coding platform combining Electron, React, TypeScript, Monaco Editor, and real-time backend services. Deepened focus on high-performance developer tooling and modular AI integration.",
-    highlights: [
-      "Built multi-window IDE interface with Monaco Core integration",
-      "Engineered real-time collaboration architecture with Socket.IO & PostgreSQL",
-      "Integrated contextual AI assistance directly into developer workspace"
+    company: "Alt Sense Technology Services LLP",
+    role: "Data Science & AI Intern",
+    period: "June – July 2026",
+    badge: "DATA SCIENCE & AI",
+    location: "Chennai, India",
+    responsibilities: [
+      "Conducted practical industry-oriented Data Science and Artificial Intelligence tasks.",
+      "Engineered automated data preprocessing and cleaning pipelines on raw datasets.",
+      "Performed in-depth Exploratory Data Analysis (EDA) to uncover actionable statistical correlations.",
+      "Applied machine learning concepts and algorithms for predictive modeling."
     ],
-    tech: ["Electron", "React", "TypeScript", "Monaco Editor", "PostgreSQL", "Socket.IO"]
+    tech: ["Python", "Machine Learning", "Pandas", "NumPy", "EDA", "Data Preprocessing"]
   },
   {
-    year: "2024",
-    phase: "03",
-    title: "Startup Solutions & Client Deliveries",
-    focus: "Qyzen Product Engineering",
-    category: "STARTUP WORK",
-    description: "Contributed to startup-focused development work and client-facing digital solutions through Qyzen. Successfully delivered tailored web applications for 3 clients with responsive UI and modern component systems.",
-    highlights: [
-      "Delivered customized digital solutions for 3 verified clients",
-      "Crafted responsive user experiences and scalable frontend architecture",
-      "Collaborated closely on client requirement mapping and design fidelity"
+    company: "Adro IT Technologies Innovative Solutions Pvt Ltd",
+    role: "Full Stack Development Intern (Virtual)",
+    period: "December 2025 – February 2026",
+    badge: "MERN STACK ENGINEERING",
+    location: "Virtual / Remote",
+    responsibilities: [
+      "Architected and built Work Forge, an end-to-end Programming Management Tool using MERN stack.",
+      "Implemented comprehensive task and project tracking systems with interactive dashboards.",
+      "Engineered full CRUD operations with secure RESTful endpoints and schema validations.",
+      "Implemented granular role-based access control (RBAC) ensuring data protection.",
+      "Directly improved team collaboration efficiency by 30% across developer workflows."
     ],
-    tech: ["React", "Node.js", "Express", "Tailwind CSS", "UI/UX Architecture"]
+    tech: ["MongoDB", "Express.js", "React.js", "Node.js", "JWT", "REST APIs", "Tailwind CSS"]
   },
   {
-    year: "2023 — 2024",
-    phase: "02",
-    title: "Cloud, DevOps & AI-Integrated Systems Training",
-    focus: "Cloud & Applied Machine Learning",
-    category: "TECHNICAL MILESTONE",
-    description: "Hands-on technical training and practical project implementations covering AWS & Azure cloud fundamentals, Docker containerization, Terraform Infrastructure as Code (IaC), and AI application development.",
-    highlights: [
-      "Containerized microservices and web apps using Docker",
-      "Explored Cloud deployment patterns on AWS and Azure",
-      "Engineered computer vision and machine learning classification systems"
+    company: "Hi-Tech Software Solutions (HTSS)",
+    role: "Full Stack Development Intern",
+    period: "July – August 2025",
+    badge: "FULL STACK & CLOUD",
+    location: "Chennai, India",
+    responsibilities: [
+      "Developed high-performance, responsive full-stack web applications using React.js and REST APIs.",
+      "Mastered and applied modern cloud deployment concepts for scalable web architectures.",
+      "Worked with container-based application management leveraging Docker environments.",
+      "Collaborated on API performance optimization and client-side state management."
     ],
-    tech: ["AWS", "Azure", "Docker", "Terraform", "Python", "OpenCV", "Scikit-Learn"]
-  },
-  {
-    year: "2023 — 2027",
-    phase: "01",
-    title: "B.Tech in Artificial Intelligence & Data Science",
-    focus: "Aalim Muhammed Salegh College of Engineering (Anna University)",
-    category: "ACADEMIC FOUNDATION",
-    description: "Pursuing undergraduate engineering degree with emphasis on machine learning algorithms, data structures, computational theory, database systems, and full-stack software development.",
-    highlights: [
-      "Core coursework: Data Structures, Operating Systems, Machine Learning, DBMS",
-      "Active contributor to student technical initiatives and developer communities",
-      "Building practical software systems alongside foundational coursework"
-    ],
-    tech: ["Data Structures", "Algorithms", "AI / Data Science", "Database Systems"]
+    tech: ["React.js", "REST APIs", "Node.js", "Cloud Deployment", "Docker Containers", "Git"]
   }
 ];
