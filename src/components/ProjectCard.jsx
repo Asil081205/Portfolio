@@ -176,33 +176,181 @@ export default function ProjectCard({ project, index, onSelect }) {
           </div>
         );
 
+      case 'dashboard':
+        return (
+          <div className="w-full h-full min-h-[300px] bg-[#0c0c0c] rounded-xl border border-white/10 p-5 md:p-6 flex flex-col justify-between font-mono">
+            {/* Top Bar */}
+            <div className="flex items-center justify-between text-xs border-b border-white/10 pb-3">
+              <div className="flex items-center gap-2">
+                <div className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
+                <span className="text-white font-bold tracking-wider">WORK FORGE · MERN SPRINT</span>
+              </div>
+              <span className="px-2.5 py-0.5 rounded bg-emerald-400/15 border border-emerald-400/30 text-emerald-400 text-[10px] font-bold">
+                +30% EFFICIENCY
+              </span>
+            </div>
+
+            {/* Kanban Sprint Board Columns */}
+            <div className="grid grid-cols-3 gap-2.5 my-4">
+              <div className="p-3 rounded-lg bg-[#141414] border border-white/5 space-y-2">
+                <div className="flex items-center justify-between text-[10px] text-[#A09C9A]">
+                  <span>TASKS</span>
+                  <span className="text-white">12</span>
+                </div>
+                <div className="p-2 rounded bg-white/[0.03] text-[11px] text-[#F2EFEB]">
+                  Auth & RBAC
+                </div>
+                <div className="p-2 rounded bg-white/[0.03] text-[11px] text-[#F2EFEB]">
+                  REST Schemas
+                </div>
+              </div>
+
+              <div className="p-3 rounded-lg bg-[#141414] border border-accent/20 space-y-2">
+                <div className="flex items-center justify-between text-[10px] text-accent">
+                  <span>IN FLIGHT</span>
+                  <span className="font-bold">4</span>
+                </div>
+                <div className="p-2 rounded bg-accent/10 border border-accent/30 text-[11px] text-white">
+                  Sprint Tracker
+                </div>
+                <div className="p-2 rounded bg-white/[0.03] text-[11px] text-[#A09C9A]">
+                  CRUD Endpoints
+                </div>
+              </div>
+
+              <div className="p-3 rounded-lg bg-[#141414] border border-white/5 space-y-2">
+                <div className="flex items-center justify-between text-[10px] text-emerald-400">
+                  <span>DEPLOYED</span>
+                  <span>18</span>
+                </div>
+                <div className="p-2 rounded bg-white/[0.03] text-[11px] text-emerald-300">
+                  Sprint Metric
+                </div>
+                <div className="p-2 rounded bg-white/[0.03] text-[11px] text-emerald-300">
+                  MongoDB Sync
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Meta */}
+            <div className="grid grid-cols-3 gap-2 border-t border-white/10 pt-3 text-[10px] text-center text-[#A09C9A]">
+              <div className="p-1.5 rounded bg-white/[0.02]">
+                <div className="text-white/40">STACK</div>
+                <div className="text-white font-medium">MERN + RBAC</div>
+              </div>
+              <div className="p-1.5 rounded bg-white/[0.02]">
+                <div className="text-white/40">INTERNSHIP</div>
+                <div className="text-white font-medium">Adro IT Tech</div>
+              </div>
+              <div className="p-1.5 rounded bg-white/[0.02]">
+                <div className="text-white/40">OPERATIONS</div>
+                <div className="text-accent font-bold">Full CRUD</div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'data':
+        return (
+          <div className="w-full h-full min-h-[300px] bg-[#0c0c0c] rounded-xl border border-white/10 p-5 md:p-6 flex flex-col justify-between font-mono">
+            {/* Top Bar */}
+            <div className="flex items-center justify-between text-xs border-b border-white/10 pb-3">
+              <span className="flex items-center gap-2 text-white font-bold">
+                <ShieldCheck className="w-4 h-4 text-accent" />
+                AI FRAUD DETECTION ENGINE
+              </span>
+              <span className="px-2.5 py-0.5 rounded bg-accent/20 border border-accent/40 text-accent font-bold text-[10px]">
+                92.0% ACCURACY
+              </span>
+            </div>
+
+            {/* Classification Telemetry & Stats */}
+            <div className="my-4 space-y-3">
+              <div className="p-3 rounded-lg bg-[#141414] border border-white/5 flex items-center justify-between">
+                <div>
+                  <div className="text-[10px] text-[#A09C9A]">EVALUATION DATASET</div>
+                  <div className="text-sm font-bold text-white mt-0.5">10,000 TRANSACTIONS</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-[10px] text-emerald-400">VERIFIED METRIC</div>
+                  <div className="text-sm font-bold text-emerald-400 mt-0.5">92% ACCURACY</div>
+                </div>
+              </div>
+
+              {/* Progress Gauges */}
+              <div className="p-3 rounded-lg bg-[#121212] border border-white/5 space-y-2 text-xs">
+                <div className="flex justify-between text-[11px]">
+                  <span className="text-[#A09C9A]">Model Confidence Rate</span>
+                  <span className="text-white font-bold">92.0%</span>
+                </div>
+                <div className="w-full bg-white/10 h-2 rounded-full overflow-hidden">
+                  <div className="w-[92%] bg-accent h-full rounded-full" />
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Meta */}
+            <div className="grid grid-cols-3 gap-2 border-t border-white/10 pt-3 text-[10px] text-center text-[#A09C9A]">
+              <div className="p-1.5 rounded bg-white/[0.02]">
+                <div className="text-white/40">TECH</div>
+                <div className="text-white">Python / ML</div>
+              </div>
+              <div className="p-1.5 rounded bg-white/[0.02]">
+                <div className="text-white/40">ALGORITHM</div>
+                <div className="text-white">Classifier</div>
+              </div>
+              <div className="p-1.5 rounded bg-white/[0.02]">
+                <div className="text-white/40">ENGINEERING</div>
+                <div className="text-accent">Feature Tuning</div>
+              </div>
+            </div>
+          </div>
+        );
+
       case 'mobile':
         return (
-          <div className="w-full h-full min-h-[300px] bg-[#0e0e0e] rounded-xl border border-white/10 p-6 flex flex-col justify-between">
-            <div className="flex items-center justify-between font-mono text-xs border-b border-white/10 pb-3">
-              <span className="flex items-center gap-2 text-[#F2EFEB]">
-                <Smartphone className="w-3.5 h-3.5 text-accent" />
-                FLUTTER PROTOTYPE
+          <div className="w-full h-full min-h-[300px] bg-[#0c0c0c] rounded-xl border border-white/10 p-5 md:p-6 flex flex-col justify-between font-mono">
+            <div className="flex items-center justify-between text-xs border-b border-white/10 pb-3">
+              <span className="flex items-center gap-2 text-white font-bold">
+                <Smartphone className="w-4 h-4 text-accent" />
+                AI CITY PULSE · FLUTTER
               </span>
-              <span className="text-accent text-[11px]">CLASSES 1–5</span>
+              <span className="px-2.5 py-0.5 rounded bg-emerald-400/15 border border-emerald-400/30 text-emerald-400 text-[10px] font-bold">
+                UN SDG 11
+              </span>
             </div>
 
             <div className="my-4 p-4 rounded-xl bg-[#141414] border border-white/5 space-y-3">
-              <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-[#A09C9A]">Adaptive Learning Module</span>
-                <span className="text-emerald-400">Class 3 Math & Logic</span>
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-[10px] text-[#A09C9A]">REAL-TIME CITY HEALTH SCORE</div>
+                  <div className="text-2xl font-display text-white tracking-tight mt-0.5">86 / 100</div>
+                </div>
+                <div className="w-10 h-10 rounded-full border-2 border-emerald-400 flex items-center justify-center text-xs font-bold text-emerald-400">
+                  OPTIMAL
+                </div>
               </div>
-              <div className="w-full bg-white/10 h-2 rounded-full overflow-hidden">
-                <div className="w-3/5 bg-accent h-full rounded-full" />
+
+              {/* Multi-variable telemetry indicators */}
+              <div className="grid grid-cols-3 gap-2 text-[10px] pt-2 border-t border-white/5">
+                <div className="p-2 rounded bg-white/[0.02] text-center">
+                  <div className="text-white/40">TRAFFIC</div>
+                  <div className="text-white font-medium mt-0.5">Moderate</div>
+                </div>
+                <div className="p-2 rounded bg-white/[0.02] text-center">
+                  <div className="text-white/40">AQI LEVEL</div>
+                  <div className="text-emerald-300 font-medium mt-0.5">Good (42)</div>
+                </div>
+                <div className="p-2 rounded bg-white/[0.02] text-center">
+                  <div className="text-white/40">DENSITY</div>
+                  <div className="text-accent font-medium mt-0.5">Normal</div>
+                </div>
               </div>
-              <p className="text-xs text-[#A09C9A] leading-relaxed">
-                Skill gap diagnostic with 3D avatar guidance companion.
-              </p>
             </div>
 
-            <div className="flex items-center justify-between font-mono text-[11px] text-[#A09C9A]">
-              <span>Target: Primary Education</span>
-              <span className="text-white">Flutter / Dart Concept</span>
+            <div className="flex items-center justify-between text-[11px] text-[#A09C9A] border-t border-white/10 pt-3">
+              <span>Cross-Platform Flutter & Firebase</span>
+              <span className="text-white">SDG 11 Sustainable Cities</span>
             </div>
           </div>
         );

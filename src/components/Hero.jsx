@@ -178,19 +178,19 @@ export default function Hero({ onOpenPalette }) {
           <div
             className="relative w-full max-w-[340px] md:max-w-[420px] lg:max-w-[460px] aspect-[4/5] flex items-end justify-center rounded-3xl overflow-hidden border border-white/15 shadow-2xl"
             style={{
-              background: 'radial-gradient(circle at 50% 36%, rgba(227, 43, 60, 0.45) 0%, rgba(180, 25, 40, 0.22) 40%, rgba(18, 12, 14, 0.95) 75%, #090909 100%)'
+              background: 'radial-gradient(circle at 50% 32%, rgba(227, 43, 60, 0.52) 0%, rgba(190, 30, 48, 0.28) 45%, rgba(18, 12, 14, 0.92) 78%, #090909 100%)'
             }}
           >
-            {/* Studio Flash Light Spotlight Dish behind head */}
-            <div className="absolute top-[18%] left-1/2 -translate-x-1/2 w-56 h-56 rounded-full bg-gradient-to-b from-accent/50 via-accent/20 to-transparent blur-2xl pointer-events-none" />
-            <div className="absolute top-[26%] left-1/2 -translate-x-1/2 w-36 h-36 rounded-full bg-white/15 blur-xl pointer-events-none" />
+            {/* Luminous Studio Flash Spotlight Centered behind head */}
+            <div className="absolute top-[16%] left-1/2 -translate-x-1/2 w-64 h-64 rounded-full bg-accent/40 blur-3xl pointer-events-none" />
+            <div className="absolute top-[22%] left-1/2 -translate-x-1/2 w-40 h-40 rounded-full bg-white/20 blur-xl pointer-events-none" />
 
-            {/* Crystal Clear Transparent Portrait Cutout */}
+            {/* Crystal Clear Transparent Portrait Cutout with 100% Solid Opacity */}
             <div className="relative w-full h-full flex items-end justify-center z-10">
               <img
                 src={siteConfig.contact.portraitTransparent}
                 alt="Asil Jamesha T — Software Developer"
-                className="w-full h-full object-contain object-bottom select-none filter contrast-[1.02] drop-shadow-[0_10px_25px_rgba(0,0,0,0.8)]"
+                className="w-full h-full object-contain object-bottom select-none"
                 loading="eager"
               />
               {/* Soft bottom anchor gradient */}
