@@ -27,9 +27,9 @@ export const siteConfig = {
     github: "https://github.com/Asil081205",
     linkedin: "https://www.linkedin.com/in/asil-jamesha",
     portfolioRepo: "https://github.com/Asil081205/Portfolio",
-    resumePdf: `${BASE}assets/Asil-Jamesha-Resume.pdf`,
-    portraitOriginal: `${BASE}assets/asil-portrait.jpeg`,
-    portraitTransparent: `${BASE}assets/asil-portrait-transparent.png`
+    resumePdf: `${BASE}assets/Asil-Jamesha-Resume.pdf?v=2`,
+    portraitOriginal: `${BASE}assets/asil-portrait.jpeg?v=2`,
+    portraitTransparent: `${BASE}assets/asil-portrait-transparent.png?v=2`
   },
 
   education: [
