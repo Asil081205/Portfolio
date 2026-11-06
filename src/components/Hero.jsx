@@ -6,6 +6,7 @@ import { useMotion } from '../context/MotionContext';
 
 export default function Hero({ onOpenPalette }) {
   const { motionEnabled } = useMotion();
+  const [useOriginalPhoto, setUseOriginalPhoto] = React.useState(false);
 
   // Animation variants
   const containerVariants = {
@@ -166,49 +167,70 @@ export default function Hero({ onOpenPalette }) {
         {/* Right Column: Cinematic Editorial Portrait */}
         <motion.div
           variants={portraitVariants}
-          className="lg:col-span-5 relative flex items-center justify-center lg:justify-end mt-6 lg:mt-0"
+          className="lg:col-span-5 relative flex items-center justify-center lg:justify-end mt-8 lg:mt-0"
         >
           {/* Crimson aura / backdrop depth glow */}
-          <div className="absolute w-[320px] md:w-[420px] h-[380px] md:h-[480px] rounded-full bg-accent/20 blur-[100px] pointer-events-none -z-10" />
+          <div className="absolute w-[320px] md:w-[420px] h-[380px] md:h-[480px] rounded-full bg-accent/25 blur-[110px] pointer-events-none -z-10" />
           
           {/* Geometric Accent Frame Behind Portrait */}
-          <div className="absolute inset-x-8 md:inset-x-12 inset-y-6 rounded-3xl border border-white/10 bg-white/[0.01] pointer-events-none -z-10" />
+          <div className="absolute inset-x-4 md:inset-x-8 inset-y-4 rounded-3xl border border-white/10 bg-white/[0.02] pointer-events-none -z-10" />
 
-          {/* Portrait Container with Soft Gradient Bottom Fade */}
-          <div className="relative w-full max-w-[340px] md:max-w-[420px] lg:max-w-[460px] aspect-[4/5] flex items-end justify-center overflow-hidden">
-            {/* Editorial Portrait Cutout */}
-            <picture className="w-full h-full flex items-end justify-center">
-              <source srcSet={siteConfig.contact.portraitTransparent} type="image/png" />
+          {/* Portrait Container */}
+          <div className={`relative w-full max-w-[340px] md:max-w-[420px] lg:max-w-[460px] aspect-[4/5] flex items-end justify-center rounded-3xl overflow-hidden transition-all duration-300 ${
+            useOriginalPhoto
+              ? 'bg-[#141414] border border-white/15 p-2 shadow-2xl'
+              : 'border border-white/5'
+          }`}>
+            {/* Crystal Clear Editorial Portrait */}
+            {useOriginalPhoto ? (
               <img
                 src={siteConfig.contact.portraitOriginal}
                 alt="Asil Jamesha T — Software Developer"
-                className="w-full h-full object-contain object-bottom select-none filter contrast-[1.03] brightness-[0.98]"
+                className="w-full h-full object-cover object-top rounded-2xl select-none"
                 loading="eager"
-                style={{
-                  maskImage: 'linear-gradient(to bottom, black 72%, transparent 98%)',
-                  WebkitMaskImage: 'linear-gradient(to bottom, black 72%, transparent 98%)'
-                }}
               />
-            </picture>
+            ) : (
+              <div className="relative w-full h-full flex items-end justify-center">
+                <img
+                  src={siteConfig.contact.portraitTransparent}
+                  alt="Asil Jamesha T — Software Developer"
+                  className="w-full h-full object-contain object-bottom select-none"
+                  loading="eager"
+                />
+                {/* Minimal soft bottom blend */}
+                <div className="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-[#090909] to-transparent pointer-events-none" />
+              </div>
+            )}
 
             {/* Subtle Editorial Monogram Tag */}
-            <div className="absolute bottom-4 left-4 z-20 font-mono text-[11px] text-[#A09C9A] bg-[#0c0c0c]/85 border border-white/10 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-2">
+            <div className="absolute bottom-4 left-4 z-20 font-mono text-[11px] text-[#A09C9A] bg-[#0c0c0c]/90 border border-white/10 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-2 shadow-lg">
               <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
               <span>ASIL JAMESHA T · CHENNAI</span>
             </div>
 
-            {/* Quick CV Download floating tag on portrait */}
-            <a
-              href={siteConfig.contact.resumePdf}
-              download="Asil-Jamesha-Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="View CV"
-              className="absolute top-4 right-4 z-20 font-mono text-[10px] text-white hover:text-accent bg-[#0c0c0c]/90 border border-white/15 hover:border-accent backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-1.5 transition-colors shadow-lg"
-            >
-              <FileText className="w-3.5 h-3.5 text-accent" />
-              <span>VIEW CV</span>
-            </a>
+            {/* Top Controls: View Mode Toggle & View CV */}
+            <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setUseOriginalPhoto(!useOriginalPhoto)}
+                className="font-mono text-[10px] tracking-wider text-[#F2EFEB] hover:text-white bg-[#0c0c0c]/90 hover:bg-[#1a1a1a] border border-white/15 hover:border-accent backdrop-blur-md px-2.5 py-1.5 rounded-full transition-colors shadow-lg"
+                title="Toggle Portrait View Mode"
+              >
+                {useOriginalPhoto ? 'STUDIO HD' : 'CUTOUT'}
+              </button>
+
+              <a
+                href={siteConfig.contact.resumePdf}
+                download="Asil-Jamesha-Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="View CV"
+                className="font-mono text-[10px] text-white hover:text-accent bg-[#0c0c0c]/90 border border-white/15 hover:border-accent backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-1.5 transition-colors shadow-lg"
+              >
+                <FileText className="w-3.5 h-3.5 text-accent" />
+                <span>VIEW CV</span>
+              </a>
+            </div>
           </div>
         </motion.div>
       </motion.div>
