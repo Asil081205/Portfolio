@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Github, Sparkles, Terminal, Code2, Database, Layers, Eye, Smartphone, Cpu, ShieldCheck, Activity } from 'lucide-react';
+import { ArrowUpRight, Sparkles, Terminal, Code2, Database, Layers, Eye, Smartphone, Cpu, ShieldCheck, Activity } from 'lucide-react';
+import { Github } from './BrandIcons';
 import { useMotion } from '../context/MotionContext';
 
 export default function ProjectCard({ project, index, onSelect }) {

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { siteConfig } from '../config/site';
-import { Mail, Linkedin, Github, ArrowUpRight, Copy, Check, Send, Sparkles, Download, Phone } from 'lucide-react';
+import { Mail, ArrowUpRight, Copy, Check, Send, Sparkles, Download, Phone } from 'lucide-react';
+import { Github, Linkedin } from './BrandIcons';
 import { useMotion } from '../context/MotionContext';
 
 export default function Contact() {
