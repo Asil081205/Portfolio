@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, Github, CheckCircle2, AlertCircle, Layers, Code2, Sparkles, Terminal } from 'lucide-react';
+import { X, ExternalLink, CheckCircle2, AlertCircle, Layers, Code2, Sparkles, Terminal } from 'lucide-react';
+import { Github } from './BrandIcons';
 import { useMotion } from '../context/MotionContext';
 
 export default function ProjectModal({ project, isOpen, onClose }) {

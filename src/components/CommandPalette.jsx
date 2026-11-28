@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Terminal, ArrowRight, Zap, Copy, Check, Github, Mail, Layers, Compass, X } from 'lucide-react';
+import { Search, Terminal, ArrowRight, Zap, Copy, Check, Mail, Layers, Compass, X } from 'lucide-react';
 import { siteConfig } from '../config/site';
 import { useMotion } from '../context/MotionContext';
 

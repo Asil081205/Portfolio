@@ -1,5 +1,6 @@
 import React from 'react';
-import { ArrowUp, Github, Linkedin, Mail, Heart, Download, Phone } from 'lucide-react';
+import { ArrowUp, Mail, Heart, Download, Phone } from 'lucide-react';
+import { Github, Linkedin } from './BrandIcons';
 import { siteConfig } from '../config/site';
 import { useMotion } from '../context/MotionContext';
 
